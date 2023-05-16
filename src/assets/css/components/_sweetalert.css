@@ -1,0 +1,20 @@
+.swal2-theme-container{
+    z-index: 99999 !important;
+    background: transparent;
+}
+
+.swal2-theme{
+    @apply bg-slate-100  dark:bg-darkmode-700 dark:text-white !important;
+}
+
+.swal2-theme-button{
+    @apply bg-primary border-primary text-white dark:border-primary !important;
+}
+
+.swal2-theme-deny{
+    @apply bg-secondary/70 border-secondary/70 text-slate-500 dark:border-darkmode-400 dark:bg-darkmode-400 dark:text-slate-300 !important;
+}
+
+.swal2-theme-cancel{    
+    @apply bg-danger border-danger text-white dark:border-danger !important;
+}

@@ -10,7 +10,7 @@ export const useTopMenuStore = defineStore("topMenu", {
       },
       {
         icon: "BoxIcon",
-        pageName: "top-menu-page-2",
+        pageName: "products",
         title: "Productos",
       },
       {

@@ -6,6 +6,7 @@ import Page1 from "../views/page-1/Main.vue";
 import Page2 from "../views/page-2/Main.vue";
 import Login from "../views/login/Main.vue";
 import Dashboard from "../views/dashboard/Main.vue";
+import Products from "../views/products/Main.vue";
 
 const isAuth = localStorage.getItem("token");
 
@@ -18,6 +19,11 @@ const routes = [
         path: "/",
         name: "dashboard",
         component: Dashboard,
+      },
+      {
+        path: "/products",
+        name: "products",
+        component: Products,
       },
       {
         path: "/page-2",
