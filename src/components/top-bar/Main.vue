@@ -6,12 +6,12 @@
     <div class="h-full flex items-center">
       <!-- BEGIN: Logo -->
       <a href="" class="-intro-x hidden md:flex">
-        <img
+        <!--<img
           alt="Icewall Tailwind HTML Admin Template"
           class="w-6"
-          src="@/assets/images/logo.svg"
-        />
-        <span class="text-white text-lg ml-3"> Icewall </span>
+          src="@/assets/images/brandemos.png"
+        />-->
+        <span class="text-white text-lg ml-3"> Brandemos </span>
       </a>
       <!-- END: Logo -->
       <!-- BEGIN: Breadcrumb -->
@@ -46,24 +46,15 @@
           >
             <DropdownHeader tag="div" class="!font-normal">
               <div class="font-medium">
-                {{ $f()[0].users[0].name }}
+                {{ user.user_display_name }}
               </div>
               <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
-                {{ $f()[0].jobs[0] }}
+                {{ user.user_email }}
               </div>
             </DropdownHeader>
             <DropdownDivider class="border-white/[0.08]" />
             <DropdownItem class="dropdown-item hover:bg-white/5">
-              <UserIcon class="w-4 h-4 mr-2" /> Profile</DropdownItem
-            >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
-            >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
               <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
-            >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <HelpCircleIcon class="w-4 h-4 mr-2" /> Help</DropdownItem
             >
             <DropdownDivider class="border-white/[0.08]" />
             <DropdownItem class="dropdown-item hover:bg-white/5">
@@ -79,7 +70,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const searchDropdown = ref(false);
 const showSearchDropdown = () => {
@@ -88,4 +79,16 @@ const showSearchDropdown = () => {
 const hideSearchDropdown = () => {
   searchDropdown.value = false;
 };
+const user = ref(null);
+
+// Función para obtener los datos del localStorage
+const getUserData = () => {
+  const userData = localStorage.getItem("user");
+  if (userData !== null) {
+    user.value = JSON.parse(userData);
+  }
+};
+
+// Llamar a la función al cargar el componente
+onMounted(getUserData);
 </script>

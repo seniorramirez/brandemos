@@ -7,6 +7,8 @@ import Page2 from "../views/page-2/Main.vue";
 import Login from "../views/login/Main.vue";
 import Dashboard from "../views/dashboard/Main.vue";
 import Products from "../views/products/Main.vue";
+import Locations from "../views/locations/Main.vue";
+import Samples from "../views/samples/Main.vue";
 
 const isAuth = localStorage.getItem("token");
 
@@ -16,14 +18,24 @@ const routes = [
     component: TopMenu,
     children: [
       {
-        path: "/",
+        path: "/dashboard/home",
         name: "dashboard",
         component: Dashboard,
       },
       {
-        path: "/products",
+        path: "/dashboard/products",
         name: "products",
         component: Products,
+      },
+      {
+        path: "/dashboard/locations",
+        name: "locations",
+        component: Locations,
+      },
+      {
+        path: "/dashboard/samples",
+        name: "samples",
+        component: Samples,
       },
       {
         path: "/page-2",
@@ -33,7 +45,7 @@ const routes = [
     ],
   },
   {
-    path: "/login",
+    path: "/dashboard/login",
     name: "login",
     component: Login
   }

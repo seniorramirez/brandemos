@@ -15,12 +15,12 @@ export const useTopMenuStore = defineStore("topMenu", {
       },
       {
         icon: "MapPinIcon",
-        pageName: "top-menu-page-2",
+        pageName: "locations",
         title: "Locación",
       },
       {
         icon: "EyeIcon",
-        pageName: "top-menu-page-2",
+        pageName: "samples",
         title: "Samples",
       },
       {

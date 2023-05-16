@@ -24,7 +24,7 @@
             <!-- BEGIN: New Button -->
             <button  class="btn btn-primary shadow-md mr-2" >
                 <PlusIcon class="w-4 h-4 ml-0.5 mr-1" />
-                Add Product
+                Add Sample
             </button>
             <!-- END: New Button -->
 
@@ -36,26 +36,24 @@
         <table class="table table-report -mt-2">
             <thead>
                 <tr>
-                    <th class="whitespace-nowrap">PRODUCT NAME</th>
-                    <th class="whitespace-nowrap">BRAND</th>
-                    <th class="text-center whitespace-nowrap">BARCODE</th>
+                    <th class="whitespace-nowrap">DEMOSTRATOR</th>
+                    <th class="whitespace-nowrap">DATE</th>
+                    <th class="whitespace-nowrap">LOCATION</th>
+                    <th class="whitespace-nowrap">UNITS SOLD</th>
+                    <th class="whitespace-nowrap">SAMPLES</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                v-for="product in responseData" :key="product.id"
-                    class="intro-x"
-                >
-                    <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ product.title.rendered }}</a>
-                    </td>
-                    <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ product._embedded["wp:term"][0][0].name}}</a>
-                    </td>
-                    <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ product.product_barcode_number }}</a>
-                    </td>
+                    v-for="sample in responseData" :key="sample.id"
+                        class="intro-x"
+                    >
+                    <td>{{ sample.demostrator }}</td>
+                    <td>{{ sample.demo_date }}</td>
+                    <td>{{ sample.demo_location[0].post_title }}</td>
+                    <td>{{ sample.total_units_sold }}</td>
+                    <td>{{ sample.cantidad_clientes}}</td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
                             <a class="flex items-center mr-3" href="javascript:;">
@@ -145,7 +143,7 @@ const responseData = ref('');
 
 onMounted(async () => {
   try {
-    const response = await axios.get('https://brandemos.jgdigitalstudio.com/wp-json/wp/v2/product?_embed&_fields=id,title,product_barcode_number,_embedded,_links');
+    const response = await axios.get('https://brandemos.jgdigitalstudio.com/wp-json/wp/v2/sample/?_embed&_fields=id,date,title,demostrator,demo_date,demo_hours,number_of_samples_given,number_of_people_sample,receptivity,demo_location,store_traffic,weather,store_support,display_appearance,manager_approve,comments_about_demo,acf,total_start_inventory,total_end_inventory,total_units_sold,cantidad_clientes,porcentaje_yes,porcentaje_no,porcentaje_gusto_si,porcentaje_gusto_no,porcentaje_hispanic,porcentaje_american,porcentaje_african_american,porcentaje_other,porcentaje_childrens,porcentaje_young,porcentaje_adult,porcentaje_elderly');
     if (response.status === 200) {
       responseData.value = response.data;
     } else {
@@ -155,5 +153,6 @@ onMounted(async () => {
     console.error(error);
   }
 });
+
 
 </script>

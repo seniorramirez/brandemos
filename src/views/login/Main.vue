@@ -6,12 +6,12 @@
         <!-- BEGIN: Login Info -->
         <div class="hidden xl:flex flex-col min-h-screen">
           <a href="" class="-intro-x flex items-center pt-5">
-            <img
-              alt="Midone Tailwind HTML Admin Template"
-              class="w-6"
-              src="@/assets/images/logo.svg"
-            />
-            <span class="text-white text-lg ml-3"> Icewall </span>
+            <!-- <img
+              alt="BRANDEMOS"
+              class="w-10"
+              src="@/assets/images/brandemos.png"
+            />-->
+            <span class="text-white text-lg ml-3"> BRANDEMOS </span>
           </a>
           <div class="my-auto">
             <img
@@ -144,7 +144,7 @@ function login(){
             user_display_name: res.data.user_display_name
         }));
 
-        window.location.href = "/home";
+        window.location.href = "/dashboard/home";
         
     }).catch(res => {
         console.log(res);
