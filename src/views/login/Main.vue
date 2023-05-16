@@ -28,7 +28,7 @@
             <div
               class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400"
             >
-              Manage all your e-commerce accounts in one place
+              Manage all your Demostrators in one place
             </div>
           </div>
         </div>
@@ -41,11 +41,11 @@
             <h2
               class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left"
             >
-              Iniciar sesión
+              Login
             </h2>
             <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">
               A few more clicks to sign in to your account. Manage all your
-              e-commerce accounts in one place
+              Demostrators in one place
             </div>
             <div class="intro-x mt-8">
               <input
@@ -65,7 +65,7 @@
             </div>
 
             <div class="intro-x mt-2 text-danger dark:text-danger text-center xl:text-left" v-if="msg_error_login">
-                El usuario no se encuentra registrado por favor validar
+              The user is not registered, please validate your account.
             </div>
             
             <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -144,7 +144,7 @@ function login(){
             user_display_name: res.data.user_display_name
         }));
 
-        window.location.href = "/";
+        window.location.href = "/home";
         
     }).catch(res => {
         console.log(res);

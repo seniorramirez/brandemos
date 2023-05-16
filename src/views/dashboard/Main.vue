@@ -27,8 +27,8 @@
                       </Tippy>
                     </div>
                   </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">Item Sales</div>
+                  <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.sample }}</div>
+                  <div class="text-base text-slate-500 mt-1">All Demostrations</div>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@
               <div class="report-box zoom-in">
                 <div class="box p-5">
                   <div class="flex">
-                    <CreditCardIcon class="report-box__icon text-pending" />
+                    <MapPinIcon class="report-box__icon text-pending" />
                     <div class="ml-auto">
                       <Tippy
                         tag="div"
@@ -48,8 +48,8 @@
                       </Tippy>
                     </div>
                   </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">3.721</div>
-                  <div class="text-base text-slate-500 mt-1">New Orders</div>
+                  <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.locations }}</div>
+                  <div class="text-base text-slate-500 mt-1">Total Locations</div>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@
                       </Tippy>
                     </div>
                   </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">2.149</div>
+                  <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.products }}</div>
                   <div class="text-base text-slate-500 mt-1">
                     Total Products
                   </div>
@@ -79,7 +79,7 @@
               <div class="report-box zoom-in">
                 <div class="box p-5">
                   <div class="flex">
-                    <UserIcon class="report-box__icon text-success" />
+                    <UsersIcon class="report-box__icon text-success" />
                     <div class="ml-auto">
                       <Tippy
                         tag="div"
@@ -90,9 +90,9 @@
                       </Tippy>
                     </div>
                   </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">152.040</div>
+                  <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.editors }}</div>
                   <div class="text-base text-slate-500 mt-1">
-                    Unique Visitor
+                    Demostrators
                   </div>
                 </div>
               </div>
@@ -112,23 +112,23 @@
         <!-- BEGIN: Official Store -->
         <div class="col-span-12 xl:col-span-8 mt-6">
           <div class="intro-y block sm:flex items-center h-10">
-            <h2 class="text-lg font-medium truncate mr-5">Official Store</h2>
+            <h2 class="text-lg font-medium truncate mr-5">Locations</h2>
             <div class="sm:ml-auto mt-3 sm:mt-0 relative text-slate-500">
               <!--MapPinIcon
                 class="w-4 h-4 z-10 absolute my-auto inset-y-0 ml-3 left-0"
-              /-->
+              /
               <input
                 type="text"
                 class="form-control sm:w-56 box pl-10"
                 placeholder="Filter by city"
-              />
+              />-->
             </div>
           </div>
           <div class="intro-y box p-5 mt-12 sm:mt-5">
-            <div>
+            <!--<div>
               250 Official stores in 21 countries, click the marker to see
               location details.
-            </div>
+            </div>-->
             <ReportMap class="report-maps mt-5 bg-slate-200 rounded-md" />
           </div>
         </div>
@@ -137,44 +137,44 @@
         <div class="col-span-12 xl:col-span-4 mt-6">
           <div class="intro-y flex items-center h-10">
             <h2 class="text-lg font-medium truncate mr-5">
-              Weekly Best Sellers
+              Best Demostrators
             </h2>
           </div>
           <div class="mt-5">
             <div
-              v-for="(faker, fakerKey) in $_.take($f(), 4)"
-              :key="fakerKey"
+              v-for="user in responseData.top_users" :key="user.id"
               class="intro-y"
             >
               <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
                 <div
                   class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden"
                 >
-                  <img
+                <TrendingUpIcon class="text-success" />
+                  <!--<img
                     alt="Midone Tailwind HTML Admin Template"
                     :src="faker.photos[0]"
-                  />
+                  />-->
                 </div>
                 <div class="ml-4 mr-auto">
                   <div class="font-medium">
-                    {{ faker.users[0].name }}
+                    {{ user.display_name }}
                   </div>
-                  <div class="text-slate-500 text-xs mt-0.5">
+                  <!--<div class="text-slate-500 text-xs mt-0.5">
                     {{ faker.dates[0] }}
-                  </div>
+                  </div>-->
                 </div>
                 <div
                   class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium"
                 >
-                  137 Sales
+                {{ user.count }} Demos
                 </div>
               </div>
             </div>
-            <a
+            <!--<a
               href=""
               class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500"
               >View More</a
-            >
+            >-->
           </div>
         </div>
         <!-- END: Weekly Best Sellers -->
@@ -185,7 +185,7 @@
         <div class="col-span-12 mt-6">
           <div class="intro-y block sm:flex items-center h-10">
             <h2 class="text-lg font-medium truncate mr-5">
-              Weekly Top Products
+              Top Products
             </h2>
             <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
               <button
@@ -206,81 +206,29 @@
             <table class="table table-report sm:mt-2">
               <thead>
                 <tr>
-                  <th class="whitespace-nowrap">IMAGES</th>
+                  <th class="whitespace-nowrap">ID</th>
                   <th class="whitespace-nowrap">PRODUCT NAME</th>
-                  <th class="text-center whitespace-nowrap">STOCK</th>
-                  <th class="text-center whitespace-nowrap">STATUS</th>
+                  <th class="text-center whitespace-nowrap">TIMES USED</th>
                   <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="(faker, fakerKey) in $_.take($f(), 4)"
-                  :key="fakerKey"
+                v-for="product in responseData.top_products" :key="product.id"
                   class="intro-x"
                 >
                   <td class="w-40">
-                    <div class="flex">
-                      <div class="w-10 h-10 image-fit zoom-in">
-                        <Tippy
-                          tag="img"
-                          alt="Midone Tailwind HTML Admin Template"
-                          class="rounded-full"
-                          :src="faker.images[0]"
-                          :content="`Uploaded at ${faker.dates[0]}`"
-                        />
-                      </div>
-                      <div class="w-10 h-10 image-fit zoom-in -ml-5">
-                        <Tippy
-                          tag="img"
-                          alt="Midone Tailwind HTML Admin Template"
-                          class="rounded-full"
-                          :src="faker.images[1]"
-                          :content="`Uploaded at ${faker.dates[1]}`"
-                        />
-                      </div>
-                      <div class="w-10 h-10 image-fit zoom-in -ml-5">
-                        <Tippy
-                          tag="img"
-                          alt="Midone Tailwind HTML Admin Template"
-                          class="rounded-full"
-                          :src="faker.images[2]"
-                          :content="`Uploaded at ${faker.dates[2]}`"
-                        />
-                      </div>
-                    </div>
+                    {{ product.id }}
                   </td>
                   <td>
-                    <a href="" class="font-medium whitespace-nowrap">{{
-                      faker.products[0].name
-                    }}</a>
-                    <div
-                      class="text-slate-500 text-xs whitespace-nowrap mt-0.5"
-                    >
-                      {{ faker.products[0].category }}
-                    </div>
+                    <a href="" class="font-medium whitespace-nowrap">{{ product.title }}</a>
                   </td>
-                  <td class="text-center">{{ faker.stocks[0] }}</td>
-                  <td class="w-40">
-                    <div
-                      class="flex items-center justify-center"
-                      :class="{
-                        'text-success': faker.trueFalse[0],
-                        'text-danger': !faker.trueFalse[0],
-                      }"
-                    >
-                      <CheckSquareIcon class="w-4 h-4 mr-2" />
-                      {{ faker.trueFalse[0] ? "Active" : "Inactive" }}
-                    </div>
-                  </td>
+                  <td class="text-center">{{ product.count }}</td>
                   <td class="table-report__action w-56">
                     <div class="flex justify-center items-center">
                       <a class="flex items-center mr-3" href="">
                         <CheckSquareIcon class="w-4 h-4 mr-1" />
                         Edit
-                      </a>
-                      <a class="flex items-center text-danger" href="">
-                        <Trash2Icon class="w-4 h-4 mr-1" /> Delete
                       </a>
                     </div>
                   </td>
@@ -358,12 +306,12 @@
             class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto mt-3"
           >
             <div class="intro-x flex items-center h-10">
-              <h2 class="text-lg font-medium truncate mr-5">Schedules</h2>
+              <h2 class="text-lg font-medium truncate mr-5">Demostrations</h2>
               <a
                 href=""
                 class="ml-auto text-primary truncate flex items-center"
               >
-                <PlusIcon class="w-4 h-4 mr-1" /> Add New Schedules
+                <PlusIcon class="w-4 h-4 mr-1" /> Add New Demostration
               </a>
             </div>
             <div class="mt-5">
@@ -468,13 +416,14 @@
 </template>
 
 <script setup>
-import { ref, provide } from "vue";
+import {onMounted, ref, provide } from "vue";
 import ReportLineChart from "@/components/report-line-chart/Main.vue";
 import ReportDonutChart from "@/components/report-donut-chart/Main.vue";
 import ReportPieChart from "@/components/report-pie-chart/Main.vue";
 import ReportMap from "@/components/report-map/Main.vue";
 import ReportDonutChart1 from "@/components/report-donut-chart-1/Main.vue";
 import SimpleLineChart1 from "@/components/simple-line-chart-1/Main.vue";
+import axios from 'axios';
 
 const salesReportFilter = ref();
 const importantNotesRef = ref();
@@ -492,4 +441,20 @@ const nextImportantNotes = () => {
   const el = importantNotesRef.value;
   el.tns.goTo("next");
 };
+
+const responseData = ref('');
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('https://brandemos.jgdigitalstudio.com/wp-json/dashboard/v1/totalsdashboard');
+    if (response.status === 200) {
+      responseData.value = response.data;
+    } else {
+      console.error('Error en la solicitud');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 </script>
