@@ -14,11 +14,11 @@ const isAuth = localStorage.getItem("token");
 
 const routes = [
   {
-    path: "/",
+    path: "/dashboard",
     component: TopMenu,
     children: [
       {
-        path: "/dashboard/home",
+        path: "/dashboard/",
         name: "dashboard",
         component: Dashboard,
       },
@@ -38,7 +38,7 @@ const routes = [
         component: Samples,
       },
       {
-        path: "/page-2",
+        path: "/dashboard/page-2",
         name: "top-menu-page-2",
         component: Page2,
       },

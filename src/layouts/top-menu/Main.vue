@@ -1,7 +1,6 @@
 <template>
   <div class="py-2 -mt-2">
-    <DarkModeSwitcher />
-    <MainColorSwitcher />
+    
     <MobileMenu />
     <TopBar />
     <!-- BEGIN: Top Menu -->

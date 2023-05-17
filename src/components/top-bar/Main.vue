@@ -79,7 +79,7 @@ const showSearchDropdown = () => {
 const hideSearchDropdown = () => {
   searchDropdown.value = false;
 };
-const user = ref(null);
+const user = ref({});
 
 // Función para obtener los datos del localStorage
 const getUserData = () => {
