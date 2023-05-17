@@ -3,14 +3,12 @@ import { defineStore } from "pinia";
 export const useColorSchemeStore = defineStore("colorScheme", {
   state: () => ({
     colorSchemeValue:
-      localStorage.getItem("colorScheme") === null
-        ? "default"
-        : localStorage.getItem("colorScheme"),
+      localStorage.getItem("colorScheme") === null  ? "theme-3" : localStorage.getItem("colorScheme"),
   }),
   getters: {
     colorScheme(state) {
       if (localStorage.getItem("colorScheme") === null) {
-        localStorage.setItem("colorScheme", "default");
+        localStorage.setItem("colorScheme", "theme-3");
       }
 
       return state.colorSchemeValue;

@@ -138,6 +138,12 @@ const helpers = {
     }
     return tempColors;
   },
+  setColorSchemeClass(theme,dark){
+    dom("html")
+      .attr("class", theme)
+      .addClass(dark ? "dark" : "");
+  }
+  
 };
 
 const install = (app) => {

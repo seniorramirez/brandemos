@@ -1,6 +1,6 @@
 <template>
   <div class="py-2 -mt-2">
-    
+    <!--MainColorSwitcher /-->
     <MobileMenu />
     <TopBar />
     <!-- BEGIN: Top Menu -->
