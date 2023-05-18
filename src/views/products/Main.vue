@@ -84,10 +84,18 @@
                     </div>
                     <div class="col-span-12 ">
                         <label for="product_brand" class="form-label">BRAND *</label>
-                        <input id="product_brand" type="text" class="form-control w-full" placeholder="Input text"
-                            v-model="form_product.brand" :class="{ 'invalid': form_product_invalidate.brand }" />
-                        <span class="text-xs mt-2 text-danger" v-show="form_product_invalidate.brand">Field is
-                            required</span>
+                        <select 
+							id="product_brand" 
+							class="form-control w-full" 
+                            v-model="form_product.brand" 
+							:class="{ 'invalid': form_product_invalidate.brand }" 
+						>
+							<option v-for="brand in brand_list" :key="brand.id" :value="brand.id">{{brand.name}}</option>
+						</select>
+
+                        <span class="text-xs mt-2 text-danger" v-show="form_product_invalidate.brand">
+							Field is required
+						</span>
                     </div>
                     <div class="col-span-12 ">
                         <label for="product_barcode" class="form-label">BARCODE *</label>
@@ -124,22 +132,31 @@ import endpoint from "../../utils/endpoint";
 /**
  * CONSTANS
  */
+
+const brand_list = ref([]);
+
 const table_data = ref([]);
 
 //MODAL NEW PRODUCT
 const show_modal_new_product = ref(false);
 const is_creating_new_product = ref(false);
-const form_product = reactive({
+
+const FORM_PRODUCT_DEFAULT = {
     id:null,
     name: '',
     brand: '',
     barcode: ''
-});
-const form_product_invalidate = reactive({
+};
+
+const form_product = reactive(Object.assign({},FORM_PRODUCT_DEFAULT));
+
+const FORM_PRODUCT_INVALIDATE_DEFAULT = {
     name: false,
     brand: false,
     barcode: false
-});
+};
+
+const form_product_invalidate = reactive(Object.assign({},FORM_PRODUCT_INVALIDATE_DEFAULT));
 
 /**
  * END CONSTANS
@@ -151,7 +168,10 @@ const form_product_invalidate = reactive({
  */
 
 function openNewProduct() {
+	
+	Object.assign(form_product,FORM_PRODUCT_DEFAULT);
     show_modal_new_product.value = true;
+	
 }
 
 function openEditProduct(product){
@@ -241,6 +261,30 @@ async function getProducts() {
     }
 }
 
+async function getBrand() {
+    
+    try {
+        let response = await endpoint.getBrands();
+
+        if(response.status == 200){
+
+            brand_list.value = response.data.map(elm => {
+                return {
+                    id: elm.id,
+                    name: elm.name
+                }
+            });
+
+        }else{
+            console.error('Error en la solicitud');
+        }
+
+    } catch(error) { 
+
+    }
+
+}
+
 /**
  * END METHODS
  */
@@ -258,6 +302,7 @@ async function getProducts() {
 //Mounted
 onMounted(() => {
     getProducts();
+    getBrand();
 });
 
 </script>

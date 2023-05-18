@@ -18,6 +18,11 @@ const endpoint = {
     },
     createProduct(body){
         return axios.post('https://brandemos.jgdigitalstudio.com/wp-json/wp/v2/product',body);
+    },
+
+    //BRANDS
+    getBrands(){
+        return axios.get('https://brandemos.jgdigitalstudio.com/wp-json/wp/v2/brand');
     }
 }
 
