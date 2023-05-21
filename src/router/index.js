@@ -9,6 +9,8 @@ import Dashboard from "../views/dashboard/Main.vue";
 import Products from "../views/products/Main.vue";
 import Locations from "../views/locations/Main.vue";
 import Samples from "../views/samples/Main.vue";
+import Users from "../views/users/Main.vue";
+import Brands from "../views/brands/Main.vue";
 
 const isAuth = localStorage.getItem("token");
 
@@ -28,6 +30,11 @@ const routes = [
         component: Products,
       },
       {
+        path: "/dashboard/brands",
+        name: "brands",
+        component: Brands,
+      },
+      {
         path: "/dashboard/locations",
         name: "locations",
         component: Locations,
@@ -38,9 +45,9 @@ const routes = [
         component: Samples,
       },
       {
-        path: "/dashboard/page-2",
-        name: "top-menu-page-2",
-        component: Page2,
+        path: "/dashboard/users",
+        name: "users",
+        component: Users,
       },
     ],
   },

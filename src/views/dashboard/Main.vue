@@ -129,7 +129,7 @@
               250 Official stores in 21 countries, click the marker to see
               location details.
             </div>-->
-            <ReportMap class="report-maps mt-5 bg-slate-200 rounded-md" />
+            <LeafletMap class="h-[310px] mt-5 rounded-md bg-slate-200" />
           </div>
         </div>
         <!-- END: Official Store -->
