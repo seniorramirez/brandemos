@@ -144,7 +144,7 @@ function login(){
             user_display_name: res.data.user_display_name
         }));
 
-        window.location.href = "/dashboard/home";
+        window.location.href = "/";
         
     }).catch(res => {
         console.log(res);
