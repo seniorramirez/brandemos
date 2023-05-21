@@ -94,6 +94,10 @@
 @import "tom-select/dist/css/tom-select.css";
 @import "tiny-slider/dist/tiny-slider.css";
 @import "simplebar/src/simplebar.css";
+@import "leaflet/dist/leaflet.css";
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+@import "leaflet-geosearch/dist/geosearch.css";
+@import '@vuepic/vue-datepicker/dist/main.css';
 
 /*
  |--------------------------------------------------------------------------

@@ -16,7 +16,10 @@ import Dropzone from "./dropzone/Main.vue";
 // import FullCalendar from "./calendar/Main.vue";
 // import FullCalendarDraggable from "./calendar/Draggable.vue";
 import Notification from "./notification/Main.vue";
+import SuccessNotification from "./notification/SuccessNotification.vue";
+import WarningNotification from "./notification/WarningNotification.vue";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "./modal";
+import ModalDelete from "./modal/ModalDelete.vue";
 import {
   Dropdown,
   DropdownToggle,
@@ -43,6 +46,13 @@ import {
 } from "./preview-component";
 import LucideIcons from "./lucide";
 
+import Pagination from "./pagination/Main.vue";
+import PaginationArrows from "./pagination/PaginationArrowsComponent.vue";
+import PaginationNumbers from "./pagination/PaginationNumbersComponent.vue";
+
+import LeafletMap from "./leaflet-map/Main.vue";
+import LeafletMapLoader from "./leaflet-map/LeafletMapLoader.vue";
+
 export default (app) => {
   app.component("Chart", Chart);
   app.component("GoogleMapLoader", GoogleMapLoader);
@@ -61,10 +71,13 @@ export default (app) => {
   // app.component("FullCalendar", FullCalendar);
   // app.component("FullCalendarDraggable", FullCalendarDraggable);
   app.component("Notification", Notification);
+  app.component("SuccessNotification", SuccessNotification);
+  app.component("WarningNotification", WarningNotification);
   app.component("Modal", Modal);
   app.component("ModalHeader", ModalHeader);
   app.component("ModalBody", ModalBody);
   app.component("ModalFooter", ModalFooter);
+  app.component("ModalDelete", ModalDelete);
   app.component("Dropdown", Dropdown);
   app.component("DropdownToggle", DropdownToggle);
   app.component("DropdownMenu", DropdownMenu);
@@ -87,6 +100,13 @@ export default (app) => {
   app.component("Preview", Preview);
   app.component("Source", Source);
   app.component("Highlight", Highlight);
+
+  app.component("Pagination", Pagination);
+  app.component("PaginationArrows", PaginationArrows);
+  app.component("PaginationNumbers", PaginationNumbers);
+
+  app.component("LeafletMap", LeafletMap);
+  app.component("LeafletMapLoader", LeafletMapLoader);
 
   for (const [key, icon] of Object.entries(LucideIcons)) {
     app.component(key, icon);

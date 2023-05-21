@@ -20,12 +20,16 @@
     authStore.setUser(JSON.parse(data_user));
     endpoint.setToken(token);
     valdiateToken();
+
+    
   }
 
   async function valdiateToken(){
     endpoint.validateToken(token).then(res => {
       if(res.data.data.status !== 200){
         resetToken();
+      }else{
+        window.axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
     }).catch(res => {
       resetToken();

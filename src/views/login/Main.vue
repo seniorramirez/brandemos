@@ -91,6 +91,7 @@
 import { onMounted, reactive,ref} from "vue";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
+import endpoint from "../../utils/endpoint";
 
 let form = reactive({
     email: null,
@@ -131,10 +132,7 @@ function login(){
 
     loading_login.value = true;
 
-    axios.post('https://brandemos.jgdigitalstudio.com/wp-json/jwt-auth/v1/token',{
-        username: form.email,
-        password: form.password
-    }).then(res => {
+    endpoint.login({ username: form.email, password: form.password }).then(res => {
 
         loading_login.value = false;
         localStorage.setItem("token",res.data.token);
@@ -144,7 +142,7 @@ function login(){
             user_display_name: res.data.user_display_name
         }));
 
-        window.location.href = "/dashboard/home";
+        window.location.href = "/dashboard/";
         
     }).catch(res => {
         console.log(res);
