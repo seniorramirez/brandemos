@@ -142,11 +142,7 @@ function login(){
             user_display_name: res.data.user_display_name
         }));
 
-<<<<<<< HEAD
-        window.location.href = "/";
-=======
         window.location.href = "/dashboard/";
->>>>>>> db42757982031bfad2aff257005a0bfa5f4cea48
         
     }).catch(res => {
         console.log(res);

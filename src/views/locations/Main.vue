@@ -74,7 +74,7 @@
     <Modal size="modal-lg" backdrop="static" :show="show_modal_location">
         <ModalHeader>
             <h2 class="mr-auto text-base font-medium">
-                {{form_location.id ? 'Update product' : 'Add product' }}
+                {{form_location.id ? 'Update Location' : 'Add Location' }}
             </h2>
         </ModalHeader>
         <ModalBody>

@@ -11,17 +11,17 @@ export const useTopMenuStore = defineStore("topMenu", {
       {
         icon: "BoxIcon",
         pageName: "products",
-        title: "Productos",
+        title: "Products",
       },
       {
         icon: "BoxIcon",
         pageName: "brands",
-        title: "Marcas",
+        title: "Brands",
       },
       {
         icon: "MapPinIcon",
         pageName: "locations",
-        title: "Locación",
+        title: "Locations",
       },
       {
         icon: "EyeIcon",

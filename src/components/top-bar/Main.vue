@@ -57,7 +57,7 @@
               <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
             >
             <DropdownDivider class="border-white/[0.08]" />
-            <DropdownItem class="dropdown-item hover:bg-white/5">
+            <DropdownItem class="dropdown-item hover:bg-white/5"  @click="resetToken">
               <ToggleRightIcon class="w-4 h-4 mr-2" /> Logout</DropdownItem
             >
           </DropdownContent>
@@ -88,6 +88,12 @@ const getUserData = () => {
     user.value = JSON.parse(userData);
   }
 };
+
+const resetToken = () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/dashboard/login";
+    };
 
 // Llamar a la función al cargar el componente
 onMounted(getUserData);

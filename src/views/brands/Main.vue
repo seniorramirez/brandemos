@@ -59,7 +59,7 @@
     <Modal size="modal-md" backdrop="static" :show="show_modal_brand">
         <ModalHeader>
             <h2 class="mr-auto text-base font-medium">
-                {{form_brand.id ? 'Update product' : 'Add product' }}
+                {{form_brand.id ? 'Update brand' : 'Add brand' }}
             </h2>
         </ModalHeader>
         <ModalBody>
@@ -83,7 +83,7 @@
                 Cancel
             </button>
             <button type="button" class="btn btn-primary" :disabled="is_creating" @click="validateFormBrand">
-                {{ form_brand.id ? 'Update product' : 'Add Product' }}
+                {{ form_brand.id ? 'Update brand' : 'Add Brand' }}
                 <LoadingIcon icon="oval" class="ml-1" color="white" v-show="is_creating" />
             </button>
         </ModalFooter>

@@ -45,7 +45,7 @@ const endpoint = {
         return axios.get(url);
     },
     createProduct(body){
-        return axios.post(`${this.path}https://brandemos.jgdigitalstudio.com/wp-json/wp/v2/product`,body);
+        return axios.post(`${this.path}/wp-json/wp/v2/product`,body);
     },
     updateProduct(id,body){
         return axios.put(`${this.path}/wp-json/wp/v2/product/${id}`,body);
