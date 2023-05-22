@@ -30,8 +30,8 @@ const props = defineProps({
 const init = async (initializeMap) => {
   const mapInstance = await initializeMap({
     config: {
-      center: [-6.2425342, 106.8626478],
-      zoom: 9,
+      center: [25.761681, -80.191788],
+      zoom: 11,
     },
   });
 
@@ -103,7 +103,7 @@ const init = async (initializeMap) => {
      `);
 
           
-    props.locations.map(function (markerElem) {
+    props.locations.map(function (markerElem) { 
       const marker = leaflet.marker(
         {
           lat: parseFloat(markerElem.latitude),
@@ -117,6 +117,8 @@ const init = async (initializeMap) => {
           }),
         }
       );
+
+      console.log(marker);
       markers.addLayer(marker);
     });
 

@@ -7,6 +7,7 @@ import utils from "./utils";
 import "./assets/css/app.css";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import endpoint from "./utils/endpoint";
+import VCalendar from 'v-calendar';
 
 
 import axios from 'axios';
@@ -17,6 +18,7 @@ endpoint.setPath(window.location.host);
 
 const app = createApp(App).use(router).use(createPinia());
 
+app.use(VCalendar, {});
 globalComponents(app);
 utils(app);
 

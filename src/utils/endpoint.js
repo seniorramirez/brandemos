@@ -32,6 +32,10 @@ const endpoint = {
         return axios.post(`${this.path}/wp-json/jwt-auth/v1/token/validate`,{},config);
     },
 
+    dashboardData(){
+        return axios.get(`${this.path}/wp-json/dashboard/v1/totalsdashboard`);
+    },
+
     //PRODUCTOS
     geProducts(search,page = 1,limit = 10){
 
@@ -88,7 +92,7 @@ const endpoint = {
         return axios.get(url);
     },
     getLocationSamples(){
-        let url = `${this.path}/wp-json/wp/v2/location?_fields=id,title`;
+        let url = `${this.path}/wp-json/wp/v2/location?_fields=id,title,lat,long`;
 
         return axios.get(url);
     },
@@ -130,6 +134,16 @@ const endpoint = {
     getSamples(search,page = 1, limit = 10){
 
         let url = `${this.path}/wp-json/wp/v2/sample?_embed&_fields=id,date,title,demostrator,demo_date,demo_hours,number_of_samples_given,number_of_people_sample,receptivity,demo_location,store_traffic,weather,store_support,display_appearance,manager_approve,comments_about_demo,acf,total_start_inventory,total_end_inventory,total_units_sold,cantidad_clientes,porcentaje_yes,porcentaje_no,porcentaje_gusto_si,porcentaje_gusto_no,porcentaje_hispanic,porcentaje_american,porcentaje_african_american,porcentaje_other,porcentaje_childrens,porcentaje_young,porcentaje_adult,porcentaje_elderly&page=${page}&per_page=${limit}`;
+
+        if(search){
+            url += `&search=${search}`;
+        }
+
+        return axios.get(url);
+    },
+    getSamplesDashboard(search,page = 1, limit = 10){
+
+        let url = `${this.path}/wp-json/wp/v2/sample?_fields=id,date,demo_date,title`;
 
         if(search){
             url += `&search=${search}`;
