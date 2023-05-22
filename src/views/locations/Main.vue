@@ -216,8 +216,8 @@ function callbackChangePagination(page){
 
 function callbackSearchGeo(location){
     form_location.address = location.location.label;
-    form_location.lat = location.location.x;
-    form_location.long = location.location.y;
+    form_location.lat = location.location.y;
+    form_location.long = location.location.x;
 }
 
 function openNewLocation() {

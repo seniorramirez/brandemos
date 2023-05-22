@@ -98,7 +98,7 @@
 @import "leaflet.markercluster/dist/MarkerCluster.css";
 @import "leaflet-geosearch/dist/geosearch.css";
 @import '@vuepic/vue-datepicker/dist/main.css';
-
+@import 'v-calendar/style.css';
 /*
  |--------------------------------------------------------------------------
  | Components

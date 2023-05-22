@@ -6,9 +6,7 @@
         <div class="col-span-12 mt-8">
           <div class="intro-y flex items-center h-10">
             <h2 class="text-lg font-medium truncate mr-5">General Report</h2>
-            <a href="" class="ml-auto flex items-center text-primary">
-              <RefreshCcwIcon class="w-4 h-4 mr-3" /> Reload Data
-            </a>
+            
           </div>
           <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
@@ -16,16 +14,7 @@
                 <div class="box p-5">
                   <div class="flex">
                     <ShoppingCartIcon class="report-box__icon text-primary" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-success cursor-pointer"
-                        content="33% Higher than last month"
-                      >
-                        33%
-                        <ChevronUpIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
+                    
                   </div>
                   <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.sample }}</div>
                   <div class="text-base text-slate-500 mt-1">All Demostrations</div>
@@ -37,16 +26,7 @@
                 <div class="box p-5">
                   <div class="flex">
                     <MapPinIcon class="report-box__icon text-pending" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-danger cursor-pointer"
-                        content="2% Lower than last month"
-                      >
-                        2%
-                        <ChevronDownIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
+                    
                   </div>
                   <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.locations }}</div>
                   <div class="text-base text-slate-500 mt-1">Total Locations</div>
@@ -58,15 +38,7 @@
                 <div class="box p-5">
                   <div class="flex">
                     <MonitorIcon class="report-box__icon text-warning" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-success cursor-pointer"
-                        content="12% Higher than last month"
-                      >
-                        12% <ChevronUpIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
+                    
                   </div>
                   <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.products }}</div>
                   <div class="text-base text-slate-500 mt-1">
@@ -80,15 +52,7 @@
                 <div class="box p-5">
                   <div class="flex">
                     <UsersIcon class="report-box__icon text-success" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-success cursor-pointer"
-                        content="22% Higher than last month"
-                      >
-                        22% <ChevronUpIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
+                    
                   </div>
                   <div class="text-3xl font-medium leading-8 mt-6">{{ responseData.editors }}</div>
                   <div class="text-base text-slate-500 mt-1">
@@ -129,7 +93,7 @@
               250 Official stores in 21 countries, click the marker to see
               location details.
             </div>-->
-            <LeafletMap class="h-[310px] mt-5 rounded-md bg-slate-200" />
+            <LeafletMap class="h-[310px] mt-5 rounded-md bg-slate-200" :locations="locations_maps" v-if="show_map"/>
           </div>
         </div>
         <!-- END: Official Store -->
@@ -187,20 +151,7 @@
             <h2 class="text-lg font-medium truncate mr-5">
               Top Products
             </h2>
-            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-              <button
-                class="btn box flex items-center text-slate-600 dark:text-slate-300"
-              >
-                <FileTextIcon class="hidden sm:block w-4 h-4 mr-2" />
-                Export to Excel
-              </button>
-              <button
-                class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300"
-              >
-                <FileTextIcon class="hidden sm:block w-4 h-4 mr-2" />
-                Export to PDF
-              </button>
-            </div>
+            
           </div>
           <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
             <table class="table table-report sm:mt-2">
@@ -236,55 +187,7 @@
               </tbody>
             </table>
           </div>
-          <div
-            class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3"
-          >
-            <nav class="w-full sm:w-auto sm:mr-auto">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    <ChevronsLeftIcon class="w-4 h-4" />
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    <ChevronLeftIcon class="w-4 h-4" />
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">...</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">...</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    <ChevronRightIcon class="w-4 h-4" />
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    <ChevronsRightIcon class="w-4 h-4" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 sm:mt-0">
-              <option>10</option>
-              <option>25</option>
-              <option>35</option>
-              <option>50</option>
-            </select>
-          </div>
+          
         </div>
         <!-- END: Weekly Top Products -->
       </div>
@@ -307,103 +210,20 @@
           >
             <div class="intro-x flex items-center h-10">
               <h2 class="text-lg font-medium truncate mr-5">Demostrations</h2>
-              <a
-                href=""
-                class="ml-auto text-primary truncate flex items-center"
-              >
-                <PlusIcon class="w-4 h-4 mr-1" /> Add New Demostration
-              </a>
+              
             </div>
             <div class="mt-5">
               <div class="intro-x box">
                 <div class="p-5">
-                  <div class="flex">
-                    <ChevronLeftIcon class="w-5 h-5 text-slate-500" />
-                    <div class="font-medium text-base mx-auto">April</div>
-                    <ChevronRightIcon class="w-5 h-5 text-slate-500" />
-                  </div>
-                  <div class="grid grid-cols-7 gap-4 mt-5 text-center">
-                    <div class="font-medium">Su</div>
-                    <div class="font-medium">Mo</div>
-                    <div class="font-medium">Tu</div>
-                    <div class="font-medium">We</div>
-                    <div class="font-medium">Th</div>
-                    <div class="font-medium">Fr</div>
-                    <div class="font-medium">Sa</div>
-                    <div class="py-0.5 rounded relative text-slate-500">29</div>
-                    <div class="py-0.5 rounded relative text-slate-500">30</div>
-                    <div class="py-0.5 rounded relative text-slate-500">31</div>
-                    <div class="py-0.5 rounded relative">1</div>
-                    <div class="py-0.5 rounded relative">2</div>
-                    <div class="py-0.5 rounded relative">3</div>
-                    <div class="py-0.5 rounded relative">4</div>
-                    <div class="py-0.5 rounded relative">5</div>
-                    <div
-                      class="py-0.5 bg-success/20 dark:bg-success/30 rounded relative"
-                    >
-                      6
-                    </div>
-                    <div class="py-0.5 rounded relative">7</div>
-                    <div class="py-0.5 bg-primary text-white rounded relative">
-                      8
-                    </div>
-                    <div class="py-0.5 rounded relative">9</div>
-                    <div class="py-0.5 rounded relative">10</div>
-                    <div class="py-0.5 rounded relative">11</div>
-                    <div class="py-0.5 rounded relative">12</div>
-                    <div class="py-0.5 rounded relative">13</div>
-                    <div class="py-0.5 rounded relative">14</div>
-                    <div class="py-0.5 rounded relative">15</div>
-                    <div class="py-0.5 rounded relative">16</div>
-                    <div class="py-0.5 rounded relative">17</div>
-                    <div class="py-0.5 rounded relative">18</div>
-                    <div class="py-0.5 rounded relative">19</div>
-                    <div class="py-0.5 rounded relative">20</div>
-                    <div class="py-0.5 rounded relative">21</div>
-                    <div class="py-0.5 rounded relative">22</div>
-                    <div
-                      class="py-0.5 bg-pending/20 dark:bg-pending/30 rounded relative"
-                    >
-                      23
-                    </div>
-                    <div class="py-0.5 rounded relative">24</div>
-                    <div class="py-0.5 rounded relative">25</div>
-                    <div class="py-0.5 rounded relative">26</div>
-                    <div
-                      class="py-0.5 bg-primary/10 dark:bg-primary/50 rounded relative"
-                    >
-                      27
-                    </div>
-                    <div class="py-0.5 rounded relative">28</div>
-                    <div class="py-0.5 rounded relative">29</div>
-                    <div class="py-0.5 rounded relative">30</div>
-                    <div class="py-0.5 rounded relative text-slate-500">1</div>
-                    <div class="py-0.5 rounded relative text-slate-500">2</div>
-                    <div class="py-0.5 rounded relative text-slate-500">3</div>
-                    <div class="py-0.5 rounded relative text-slate-500">4</div>
-                    <div class="py-0.5 rounded relative text-slate-500">5</div>
-                    <div class="py-0.5 rounded relative text-slate-500">6</div>
-                    <div class="py-0.5 rounded relative text-slate-500">7</div>
-                    <div class="py-0.5 rounded relative text-slate-500">8</div>
-                    <div class="py-0.5 rounded relative text-slate-500">9</div>
-                  </div>
+                  <VCalendar @dayclick="selectedDay" :attributes="calendar_attr" style="width:100% !important;" @update:pages="changeMonth"/>
                 </div>
-                <div class="border-t border-slate-200/60 p-5">
+                <div class="border-t border-slate-200/60 p-2" v-for="sample in samples_month_lists" :key="sample.id">
                   <div class="flex items-center">
-                    <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>
-                    <span class="truncate">UI/UX Workshop</span>
-                    <span class="font-medium xl:ml-auto">23th</span>
+                    <div class="w-2 h-2 bg-danger rounded-full mr-3"></div>
+                    <span class="truncate">{{sample.title.rendered}}</span>
+					<span class="font-medium xl:ml-auto">{{ dayjs(sample.demo_date).format('DD')}}th</span>
                   </div>
-                  <div class="flex items-center mt-4">
-                    <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                    <span class="truncate">VueJs Frontend Development</span>
-                    <span class="font-medium xl:ml-auto">10th</span>
-                  </div>
-                  <div class="flex items-center mt-4">
-                    <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
-                    <span class="truncate">Laravel Rest API</span>
-                    <span class="font-medium xl:ml-auto">31th</span>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -413,10 +233,75 @@
       </div>
     </div>
   </div>
+
+	<Modal size="modal-lg" backdrop="static" :show="show_modal_sample">
+        <ModalHeader>
+            <h2 class="mr-auto text-base font-medium">
+                {{form_sample.id ? 'Update sample' : 'Add sample' }}
+            </h2>
+        </ModalHeader>
+        <ModalBody>
+
+            <div class="intro-y">
+
+                <div class="grid grid-cols-12 gap-x-6 gap-y-4 mb-5">
+                    <div class="col-span-12 lg:col-span-6 flex flex-col">
+                        <label for="user_name" class="form-label ">Title *</label>
+                        <input id="user_name" type="text" class="form-control w-full " v-model="form_sample.title" :class="{ 'invalid': form_sample_invalidate.title }"/>
+                        <span class="text-xs mt-2 text-danger" v-show="form_sample_invalidate.title">Field is required</span>
+                    </div>
+                    <div class="col-span-12 lg:col-span-6">
+                        <label for="user_last_name" class="form-label">Date *</label>
+                        <VueDatePicker v-model="form_sample.date" :is-24="false" :min-date="new Date()" />
+                        <span class="text-xs mt-2 text-danger" v-show="form_sample_invalidate.date">Field is required</span>
+                    </div>
+                    <div class="col-span-12 lg:col-span-6">
+                        <label for="user_email" class="form-label">Location *</label>
+                        <select 
+							id="product_brand" 
+							class="form-control w-full" 
+                            v-model="form_sample.demo_location" 
+							:class="{ 'invalid': form_sample_invalidate.demo_location }" 
+						>
+							<option v-for="location in locations_lists" :key="location.id" :value="location.id">{{location.location_title}}</option>
+						</select>
+                        <span class="text-xs mt-2 text-danger" v-show="form_sample_invalidate.demo_location">Field is required</span>
+                    </div>
+                    <div class="col-span-12 lg:col-span-6">
+                        <label for="user_phone" class="form-label">User *</label>
+                        <select 
+							id="product_brand" 
+							class="form-control w-full" 
+                            v-model="form_sample.demostrator" 
+							:class="{ 'invalid': form_sample_invalidate.demostrator }" 
+						>
+							<option v-for="user in users_lists" :key="user.id" :value="user.id">{{user.name}}</option>
+						</select>
+                        <span class="text-xs mt-2 text-danger" v-show="form_sample_invalidate.demostrator">Field is required</span>
+                    </div>
+                  
+
+                </div>
+            </div>
+        </ModalBody>
+        <ModalFooter>
+            <button type="button" @click="closeModalNewSample" class="w-20 mr-1 btn btn-outline-secondary">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-primary" :disabled="is_creating_sample" @click="validateFormSample">
+                {{ form_sample.id ? 'Update sample' : 'Add sample' }}
+                <LoadingIcon icon="oval" class="ml-1" color="white" v-show="is_creating_sample" />
+            </button>
+        </ModalFooter>
+    </Modal>
+  	
+
+	<SuccessNotification refKey="successNotification"/>
+    <WarningNotification refKey="warningNotification" />
 </template>
 
 <script setup>
-import {onMounted, ref, provide } from "vue";
+import {onMounted, ref, provide, reactive } from "vue";
 import ReportLineChart from "@/components/report-line-chart/Main.vue";
 import ReportDonutChart from "@/components/report-donut-chart/Main.vue";
 import ReportPieChart from "@/components/report-pie-chart/Main.vue";
@@ -424,9 +309,42 @@ import ReportMap from "@/components/report-map/Main.vue";
 import ReportDonutChart1 from "@/components/report-donut-chart-1/Main.vue";
 import SimpleLineChart1 from "@/components/simple-line-chart-1/Main.vue";
 import axios from 'axios';
+import endpoint from "../../utils/endpoint";
+import dayjs from "dayjs";
 
 const salesReportFilter = ref();
 const importantNotesRef = ref();
+
+const locations_lists = ref([]);
+const users_lists = ref([]);
+const locations_maps = ref([]);
+const show_map = ref(false);
+const samples_lists = ref([]);
+const calendar_attr = ref([]);
+const samples_month_lists = ref([]);
+
+
+const show_modal_sample = ref(false);
+const is_creating_sample = ref(false);
+
+const form_sample_DEFAULT = {
+    id:null,
+    title: '',
+    date: null,
+    demostrator: null,
+    demo_location: null,
+};
+
+const form_sample = reactive(Object.assign({},form_sample_DEFAULT));
+
+const form_sample_INVALIDATE_DEFAULT = {
+    title: false,
+    date: false,
+    demostrator: false,
+    demo_location: false,
+};
+
+const form_sample_invalidate = reactive(Object.assign({},form_sample_INVALIDATE_DEFAULT));
 
 provide("bind[importantNotesRef]", (el) => {
   importantNotesRef.value = el;
@@ -444,9 +362,110 @@ const nextImportantNotes = () => {
 
 const responseData = ref('');
 
-onMounted(async () => {
+
+function selectedDay(event){
+
+	let now = dayjs();
+	let date_selected = dayjs(event.id);
+
+	if(date_selected < now){
+		return;
+	}
+
+	form_sample.date = dayjs(event.id+' '+date_selected.format("HH:mm:ss")).format('ddd MMM D YYYY HH:mm:ss [GMT]Z (z)');
+   	show_modal_sample.value = true;
+}
+
+function changeMonth(event){
+	
+	samples_month_lists.value = samples_lists.value.filter(elm => dayjs(elm.demo_date).format('MM') == dayjs(event[0].id+'-01').format('MM'));
+}
+
+function closeModalNewSample() {
+
+    show_modal_sample.value = false;
+}
+
+function validateFormSample() {
+
+    let error = false;
+
+    if (!form_sample.title || form_sample.title === '') {
+        form_sample_invalidate.title = true;
+        error = true;
+    } else {
+        form_sample_invalidate.title = false;
+    }
+
+    if (!form_sample.date || form_sample.date === '') {
+        form_sample_invalidate.date = true;
+        error = true;
+    } else {
+        form_sample_invalidate.date = false;
+    }
+
+    if (!form_sample.demostrator || form_sample.demostrator === '') {
+        form_sample_invalidate.demostrator = true;
+        error = true;
+    } else {
+        form_sample_invalidate.demostrator = false;
+    }
+
+    if (!form_sample.demo_location || form_sample.demo_location === '') {
+        form_sample_invalidate.demo_location = true;
+        error = true;
+    } else {
+        form_sample_invalidate.demo_location = false;
+    }
+
+    if (error) {
+        return;
+    }
+
+    if(form_sample.id){
+    }else{
+        sendCreateSample();
+    }
+}
+
+async function sendCreateSample() {
+
+    is_creating_sample.value = true;
+
+    let params = {
+        title: form_sample.title,
+        demostrator: form_sample.demostrator,
+        demo_location: form_sample.demo_location,
+        demo_date: dayjs(form_sample.date).format("YYYY-MM-DD"),
+        demo_hours: dayjs(form_sample.date).format("HH:mm:ss"),
+        status: "publish"
+    };  
+
+    const response = await endpoint.createSample(params);
+
+    if(response.status === 201){
+        
+        is_creating_sample.value = false;
+
+        calendar_attr.value.push({
+			key: response.data.id,
+			highlight: 'red',
+			dates: dayjs(response.data.demo_date).toDate(),
+		});
+
+        show_modal_sample.value = false;
+        successNotification.value.showToast('Se realizó el registro correctamente','Correcto');
+    }else{
+        is_creating_sample.value = false;
+        console.error('Error en la solicitud');
+        warningNotification.value.showToast(response.message,'¡Ocurrio un error!');
+    }
+}
+
+async function getDashboardData(){
   try {
-    const response = await axios.get('https://brandemos.jgdigitalstudio.com/wp-json/dashboard/v1/totalsdashboard');
+    const response = await endpoint.dashboardData();
+    console.log(response);
     if (response.status === 200) {
       responseData.value = response.data;
     } else {
@@ -455,6 +474,112 @@ onMounted(async () => {
   } catch (error) {
     console.error(error);
   }
+}
+
+async function getLocations() {
+
+    try {
+        const response = await endpoint.getLocationSamples();
+        if (response.status === 200) {
+            
+            locations_lists.value = response.data.map(elm => {
+                return {
+                    id: elm.id,
+                    location_title: elm.title.rendered
+                }
+            });
+
+            locations_maps.value = response.data.map(elm => {
+              return {
+                id: elm.id,
+                name: elm.title.rendered,
+                latitude: elm.lat,
+                longitude: elm.long
+              }
+            });
+
+            show_map.value = true;
+
+        } else {
+            console.error('Error en la solicitud');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
+async function getUsers() {
+
+    try {
+        const response = await endpoint.getUsersSample();
+        if (response.status === 200) {
+            users_lists.value = response.data.map(elm => {
+                return {
+                    id: elm.id,
+                    name: elm.name
+                }
+            });
+
+        } else {
+            console.error('Error en la solicitud');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getSamples() {
+
+    try {
+        const response = await endpoint.getSamplesDashboard();
+        if (response.status === 200) {
+            samples_lists.value = response.data.map(elm => {
+                return {
+                    id: elm.id,
+                    date: elm.date,
+					demo_date: elm.demo_date,
+					title: elm.title
+                }
+            });
+
+			calendar_attr.value = response.data.map(elm => {
+
+				return {
+					key: elm.id,
+					highlight: 'red',
+					dates: dayjs(elm.demo_date).toDate(),
+				}
+			});
+
+			samples_month_lists.value = response.data.filter(elm => dayjs(elm.demo_date).format('MM') == dayjs().format('MM'));
+
+        } else {
+            console.error('Error en la solicitud');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+const successNotification = ref();
+provide("bind[successNotification]", (el) => {
+  // Binding
+  successNotification.value = el;
+});
+
+const warningNotification = ref();
+provide("bind[warningNotification]", (el) => {
+  // Binding
+  warningNotification.value = el;
+});
+
+onMounted(() => {
+  getDashboardData();
+  getLocations();
+  getUsers();
+  getSamples();
 });
 
 </script>

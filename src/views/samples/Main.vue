@@ -44,7 +44,7 @@
             <tbody>
                 <tr v-for="user in table_data" :key="user.id" class="intro-x">
                     <td class="w-40">
-                        <span>{{ user.demostrator}}</span>
+                        <span>{{ user.demostrator ? user.demostrator[0].user_nicename : 'Not found'}}</span>
                     </td>
                     <td class="w-40">
                         <a href="" class="font-medium whitespace-nowrap">{{ user.demo_date }}</a>
