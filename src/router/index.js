@@ -16,43 +16,43 @@ const isAuth = localStorage.getItem("token");
 
 const routes = [
   {
-    path: "/dashboard",
+    path: "/demonstrations/dashboard/",
     component: TopMenu,
     children: [
       {
-        path: "/dashboard/",
+        path: "/demonstrations/dashboard/",
         name: "dashboard",
         component: Dashboard,
       },
       {
-        path: "/dashboard/products",
+        path: "/demonstrations/dashboard/products",
         name: "products",
         component: Products,
       },
       {
-        path: "/dashboard/brands",
+        path: "/demonstrations/dashboard/brands",
         name: "brands",
         component: Brands,
       },
       {
-        path: "/dashboard/locations",
+        path: "/demonstrations/dashboard/locations",
         name: "locations",
         component: Locations,
       },
       {
-        path: "/dashboard/samples",
+        path: "/demonstrations/dashboard/samples",
         name: "samples",
         component: Samples,
       },
       {
-        path: "/dashboard/users",
+        path: "/demonstrations/dashboard/users",
         name: "users",
         component: Users,
       },
     ],
   },
   {
-    path: "/dashboard/login",
+    path: "/demonstrations/dashboard/login",
     name: "login",
     component: Login
   }

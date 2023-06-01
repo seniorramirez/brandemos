@@ -12,8 +12,8 @@ const endpoint = {
             case 'brandemos.jgdigitalstudio.com':
                 this.path = 'https://brandemos.jgdigitalstudio.com';
             break;
-            case 'demonstrations.brandemos.com':
-                this.path = 'https://demonstrations.brandemos.com';
+            case 'brandemos.com/demonstrations/dashboard/':
+                this.path = 'https://brandemos.com/demonstrations/';
             break;
         }
     },
