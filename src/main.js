@@ -9,7 +9,6 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import endpoint from "./utils/endpoint";
 import VCalendar from 'v-calendar';
 
-
 import axios from 'axios';
 window.axios = axios;
 

@@ -140,8 +140,11 @@
 
     <SuccessNotification refKey="successNotification"/>
     <WarningNotification refKey="warningNotification" />
-</template>
 
+        
+    <button @click="generatePdf">OPRIMEEEEE AQUII</button>
+
+</template>
 
 <script setup>
 
@@ -150,6 +153,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import endpoint from "../../utils/endpoint";
 import dayjs from "dayjs";
+import html2pdf from 'html2pdf.js';
 
 
 /**
@@ -173,8 +177,6 @@ const search = ref("");
 const searching = ref(false);
 
 const password_confirm_error = ref(false);
-
-
 
 //MODAL NEW PRODUCT
 const show_modal_sample = ref(false);
@@ -462,6 +464,544 @@ async function getUsers() {
         warningNotification.value.showToast('Por favor conectarse con el administrador','¡Ocurrio un error!');
     }
 }
+
+function generateHtml (data) {
+
+    let table_product = "";
+
+    for(let i in data.acf.products){
+        let shop = data.acf.products[i];
+        let product = shop.product[0]; 
+        table_product += `<tr >
+            <td class="not-border-left not-border-bot">${product.post_title}</td>
+            <td class="not-border-left not-border-bot">${shop.star_inventory}</td>
+            <td class="not-border-left not-border-bot">${shop.ending_inventory}</td>
+            <td class="not-border-left not-border-bot">${shop.unitis_sold}</td>
+            <td class="not-border-left not-border-bot">${shop.price}</td>
+            <td class="not-border-left not-border-bot not-border-rigth">${shop.special_price}</td>
+        </tr> `;
+    }
+
+    return `
+            <style type="text/css">
+
+    .container{
+        padding: 0.5em;
+    }
+    table
+    {
+        border: 1px solid;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing:0;
+        font-family: a
+    }
+    .not-border-top{
+        border-top: 0px;
+    }
+    .not-border-bot{
+        border-bottom: 0px;
+    }
+
+    .td-borders td{
+        border: 0.1px solid;
+    }
+
+    
+    td
+    {
+        padding:10px 5px;
+    }
+
+    .border-left
+    {
+        border-left: 1px solid black;
+    }
+    .border-top
+    {
+        border-top: 1px solid black;
+    }
+
+    .all-border{
+        border: 1px solid black;
+    }
+    .all-border-rigth{
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+    }
+
+    .not-border{
+        border: 0px !important;
+    }
+    .not-border-bot{
+        border-bottom: 0px !important;
+    }
+    .not-border-left{
+        border-left: 0px !important;
+    }
+    .not-border-rigth{
+        border-right: 0px !important;
+    }
+
+
+
+    .titulo{
+        font-size: 20pt;
+        color: black;
+        font-weight: bold;
+    }
+
+    .mt-5{
+        margin-top: 5em;
+    }
+    
+    .text-center{
+        text-align: center
+    }
+</style>
+<div class="container" >
+    <table>
+        <tr>
+            <td class="">
+                <span>Aqui va la imagen</span>
+            </td>
+            <td class="text-center border-left">
+                <h1 class="titulo">DEMO REFORMACE FORM</h1><br>
+                <span class="mt-5">(Información del Demo)</span>
+            </td>
+            <td class="text-center border-left">
+                <span>B-F_002-18</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center border-top" colspan="3">
+                <span> INFORMATION / INFORMACION </span>
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        <tr >
+            <td class="not-border" style="width:25%">
+                <span>Demostrator Name: (nombre del demostrador)</span>
+            </td>
+            <td class="all-border-rigth" style="width:75%">
+                <span>${data.demostrator[0].demostratorname} ${data.demostrator[0].demostratorlastname}</span>
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="not-border" style="width:25%">
+                <span>	Demo Date: (fecha del Demo)</span>
+            </td>
+            <td class="all-border" style="width:25%">
+                <span>${data.demo_date}</span>
+            </td>
+            <td class="not-border" style="width:25%">
+                <span>Demo Hours: (horas demo)</span>
+            </td>
+            <td class="all-border-rigth" style="width:25%">
+                <span>${data.demo_hours}</span>
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        <tr >
+            <td class="not-border" style="width:25%">
+                <span>Store Name: (nombre de la tienda)</span>
+            </td>
+            <td class="all-border-rigth" style="width:75%">
+                <span>${data.demo_location[0] ? data.demo_location[0].post_title : '-'}</span>
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-td not-border-bot" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        <tr >
+            <td class="not-border" style="width:25%">
+                <span>Adress: ( Dirección)</span>
+            </td>
+            <td class="all-border-rigth" style="width:75%">
+                <span>${data.demo_location[0] ? data.demo_location[0].address : '-'}</span>
+            </td>
+        </tr>
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot td-borders" style="width:100%">
+        <tr >
+            <td style="width:30%" class="not-border-left not-border-bot">
+                <span>Product (producto)</span>
+            </td>
+            <td style="width:10%" class="not-border-left not-border-bot">
+                <span>Start Inventory (inventario inicial)</span>
+            </td>
+            <td style="width:10%" class="not-border-left not-border-bot">
+                <span>Ending Inventory (inventario FINAL)</span>
+            </td>
+            <td style="width:10%" class="not-border-left not-border-bot">
+                <span>Units Sold (unid. Vendidas)</span>
+            </td>
+            <td style="width:15%" class="not-border-left not-border-bot">
+                <span>Price (precio)</span>
+            </td>
+            <td style="width:15%" class="not-border-left not-border-rigth not-border-bot">
+                <span>Special Price (precio especial)</span>
+            </td>
+        </tr>
+        
+        ${table_product}
+        
+        <tr >
+            <td class="not-border-left not-border-bot" style="text-align:right">
+                <span>Total</span>
+            </td>
+            
+            <td class="not-border-left "><span>${data.total_start_inventory}</span></td>
+            <td class="not-border-left "><span>${data.total_end_inventory}</span></td>
+            <td class="not-border-left "><span>${data.total_units_sold}</span></td>
+            <td class="not-border-bot not-border-left not-border-rigth"></td>
+            <td class="not-border-bot not-border-left not-border-rigth"></td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="not-border" style="width:25%">
+                <span># of Samples Give: (# de muestras entregadas)</span>
+            </td>
+            <td class="all-border" style="width:25%">
+                <span>${data.cantidad_clientes}</span>
+            </td>
+            <td class="not-border" style="width:25%">
+                <span># of People Sample (# de muestras entregadas a personas)</span>
+            </td>
+            <td class="all-border-rigth" style="width:25%">
+                
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="not-border" style="width:70%">
+                <span>Hours of increased delivery or moments of people in the store: ( horas de mayor entrega o movimientos de personas en la tienda)</span>
+            </td>
+            <td class="all-border" style="width:10%">
+                
+            </td>
+            <td class="all-border not-border-left not-border-rigth" style="width:10%">
+               
+            </td>
+            <td class="all-border-rigth" style="width:10%">
+                
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="" style="width:25%">
+                <span>Receptivity (receptividad):	</span>
+            </td>
+            <td class="" style="width:25%">
+                
+            </td>
+            <td class=" " style="width:25%">
+               <span>Demo Location: (localizado)</span>
+            </td>
+            <td class="" style="width:25%">
+                
+            </td>
+        </tr>
+
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td class="" style="width:25%">
+                <span>Store Traffic (trafico en la tienda):</span>
+            </td>
+            <td class="" style="width:25%">
+                
+            </td>
+            <td class=" " style="width:25%">
+               <span>Weather (tiempo):</span>
+            </td>
+            <td class="" style="width:25%">
+                
+            </td>
+        </tr>
+
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td class="" style="width:25%">
+                <span>Store Support (soporte de la tienda):</span>
+            </td>
+            <td class="" style="width:25%">
+                
+            </td>
+            <td class=" " style="width:25%">
+               <span>Display Appearance: (apariencia del exhibidor)	</span>
+            </td>
+            <td class="" style="width:25%">
+                
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="" style="width:25%">
+                <span>Did of Consumers Know the Brans? (los consumidores conocían la marca):</span>
+            </td>
+            <td >
+                
+            </td>
+        
+        </tr>
+
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td class="" style="width:25%">
+                <span>They Liked the taste of consumers? (les gusto el sabor a los consumidores):</span>
+            </td>
+            <td >
+                
+            </td>
+        
+        </tr>
+
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="" style="width:25%">
+                <span>Consumers Country Origin: (país de origen del consumidor)</span>
+            </td>
+            <td >
+                
+            </td>
+        
+        </tr>
+
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="" style="width:25%">
+                <span>Consumers (consumidor):	</span>
+            </td>
+            <td >
+                
+            </td>
+        </tr>
+    </table>
+
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="" style="width:50%">
+                <span>Consumers Comments (comentarios del consumidor)</span>
+            </td>
+            <td class="all-border-rigth not-border-bot" style="width:50%">
+                
+            </td>
+        
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        
+        <tr>
+            <td class="all-border-rigth" style="width:50%">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+    </table>
+
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td class="" style="width:50%">
+                <span>		Demostrator Comments (comentarios del demostrador)</span>
+            </td>
+            <td class="all-border-rigth not-border-bot" style="width:50%">
+                
+            </td>
+        
+        </tr>
+
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        
+        <tr>
+            <td class="all-border-rigth" style="width:50%">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        <tr >
+            <td></td>
+        </tr>
+        <tr >
+            <td></td>
+        </tr>
+    </table>
+
+    <table class="not-border-top not-border-bot not-border-td" style="width:100%">
+        
+        <tr>
+            <td style="width:100%" class="border-top text-center">
+                <span>Store Information (información de l Stamp (sello)</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:100%" class="border-top">
+                <span>	Manager Name / Signature (nombre del gerente / firma):</span>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+    </table>
+    <table class="not-border-top not-border-td" style="width:100%">
+        
+        <tr>
+            <td style="width:100%" class="border-top">
+                <span>Comments About Demo (comentarios sobre el demo):</span>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+     
+    </table>
+    
+    
+
+</div>
+
+      `;
+}
+
+function generatePdf (){
+	
+    let data = {"id":204,"date":"2023-06-21T20:49:37","date_gmt":"2023-06-22T00:49:37","guid":{"rendered":"https:\/\/brandemos.com\/demonstrations\/sample\/27\/"},"modified":"2023-07-11T22:20:55","modified_gmt":"2023-07-12T02:20:55","slug":"27","status":"publish","type":"sample","link":"https:\/\/brandemos.com\/demonstrations\/sample\/27\/","title":{"rendered":"27"},"author":1,"featured_media":0,"template":"","demostrator":[{"phone":"","demostratorname":"","demostratorlastname":"","ID":"14","user_login":"s.montoya","user_nicename":"s-montoya","display_name":"Santiago Montoya","user_pass":null,"user_email":"santiago@four19agency.com","user_url":"","user_registered":"2023-06-06 23:44:23","id":14}],"demo_date":"2023-06-27","demo_hours":"00:00:00","number_of_samples_given":[],"number_of_people_sample":[],"receptivity":"Good","demo_location":[{"address":"Sam's Club, 8425, Northwest 13th Terrace, Doral, Condado de Miami-Dade, Florida, 33126, Estados Unidos de Am\u00e9rica","city":"Miami","zip_code":"33178","logo":false,"lat":"25.78685555","long":"-80.33312413247","ID":165,"post_title":"Sams Doral","post_content":"","post_excerpt":"","post_author":"1","post_date":"2023-05-19 19:21:24","post_date_gmt":"2023-05-19 23:21:24","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"desdejson110","to_ping":"","pinged":"","post_modified":"2023-06-01 15:48:19","post_modified_gmt":"2023-06-01 19:48:19","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.jgdigitalstudio.com\/location\/desdejson110\/","menu_order":0,"post_type":"location","post_mime_type":"","comment_count":"0","comments":false,"id":165}],"store_traffic":"Medium","weather":"Sunny","store_support":"Good","display_appearance":"Good","manager_approve":{"ID":"143","post_author":"1","post_date":"2023-05-18 01:54:49","post_date_gmt":"2023-05-18 01:54:49","post_content":"","post_title":"waveBG6","post_excerpt":"","post_status":"inherit","comment_status":"open","ping_status":"closed","post_password":"","post_name":"wavebg6","to_ping":"","pinged":"","post_modified":"2023-07-11 22:20:55","post_modified_gmt":"2023-07-12 02:20:55","post_content_filtered":"","post_parent":"204","guid":"https:\/\/brandemos.jgdigitalstudio.com\/wp-content\/uploads\/2023\/05\/waveBG6.png","menu_order":"0","post_type":"attachment","post_mime_type":"image\/png","comment_count":"0","pod_item_id":"143"},"comments_about_demo":"dfyhrtf","acf":{"consumer":[{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AMERICAN","consumers":"CHILDRENS","consumers_comments_":"456","demostrator_comments":"456"},{"did_of_consumers_know_the_brans_":"NO","they_liked_the_taste_of_consumers":"NO","consumers_country_origin":"HISPANIC","consumers":"ADULT","consumers_comments_":"456","demostrator_comments":"456478"},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AFRICAN-AMERICAN","consumers":"ADULT","consumers_comments_":"","demostrator_comments":""},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AFRICAN-AMERICAN","consumers":"ELDERLY","consumers_comments_":"7486","demostrator_comments":"786"}],"products":[{"product":[{"ID":211,"post_author":"14","post_date":"2023-06-30 10:16:34","post_date_gmt":"2023-06-30 14:16:34","post_content":"","post_title":"Cafe Real  16 OZ","post_excerpt":"","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"cafe-real-16-oz","to_ping":"","pinged":"","post_modified":"2023-06-30 10:16:34","post_modified_gmt":"2023-06-30 14:16:34","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.com\/demonstrations\/product\/cafe-real-16-oz\/","menu_order":0,"post_type":"product","post_mime_type":"","comment_count":"0","filter":"raw"}],"star_inventory":"4","ending_inventory":"3","unitis_sold":"1","price":"5","special_price":"3"},{"product":[{"ID":212,"post_author":"14","post_date":"2023-06-30 10:16:56","post_date_gmt":"2023-06-30 14:16:56","post_content":"","post_title":"Cafe Real  32 OZ","post_excerpt":"","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"cafe-real-32-oz","to_ping":"","pinged":"","post_modified":"2023-06-30 10:16:56","post_modified_gmt":"2023-06-30 14:16:56","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.com\/demonstrations\/product\/cafe-real-32-oz\/","menu_order":0,"post_type":"product","post_mime_type":"","comment_count":"0","filter":"raw"}],"star_inventory":"5","ending_inventory":"2","unitis_sold":"3","price":"5","special_price":"2"}]},"total_start_inventory":9,"total_end_inventory":5,"total_units_sold":4,"cantidad_clientes":4,"cantidad_yes":3,"cantidad_no":1,"porcentaje_yes":75,"porcentaje_no":25,"cantidad_gusto_si":3,"cantidad_gusto_no":1,"porcentaje_gusto_si":75,"porcentaje_gusto_no":25,"cantidad_hispanic":1,"cantidad_american":1,"cantidad_african_american":2,"cantidad_other":0,"porcentaje_hispanic":25,"porcentaje_american":25,"porcentaje_african_american":50,"porcentaje_other":0,"cantidad_childrens":1,"cantidad_young":0,"cantidad_adult":2,"cantidad_elderly":1,"porcentaje_childrens":25,"porcentaje_young":0,"porcentaje_adult":50,"porcentaje_elderly":25,"sample_count":"27","_links":{"self":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/sample\/204"}],"collection":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/sample"}],"about":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/types\/sample"}],"author":[{"embeddable":true,"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/users\/1"}],"wp:attachment":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/media?parent=204"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}};
+
+    const htmlContent = generateHtml(data);
+
+
+    // Opciones de configuración para html2pdf
+    const options = {
+    margin: [0.2, 0.2, 0.2, 0.2],
+    filename: `CV-${name}.pdf`,
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: {
+        dpi: 192,
+        scale:4,
+        letterRendering: true,
+        useCORS: true
+    },
+    pagebreak: { avoid: ['tr', 'td'] },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Generar y descargar el PDF
+    html2pdf().set(options).from(htmlContent).save();
+
+   
+}
+
 
 /**
  * END METHODS

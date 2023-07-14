@@ -52,7 +52,7 @@ const fakers = {
     for (let i = 0; i < 15; i++) {
       photos[photos.length] =
         imageAssets[
-          "/src/assets/images/profile-" + _.random(1, 15) + ".jpg"
+          "/src/assets/images/usuario.png"
         ].default;
     }
     return _.sampleSize(photos, 10);
