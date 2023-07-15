@@ -482,6 +482,12 @@ function generateHtml (data) {
         </tr> `;
     }
 
+    let hour_samples_arr = ['00','00','00'];
+
+    if(data.sample_hour){
+        hour_samples_arr = data.sample_hour.explode(':'); 
+    }
+
     return `
             <style type="text/css">
 
@@ -702,13 +708,13 @@ function generateHtml (data) {
                 <span># of Samples Give: (# de muestras entregadas)</span>
             </td>
             <td class="all-border" style="width:25%">
-                <span>${data.cantidad_clientes}</span>
+                <span>${data.sample_count}</span>
             </td>
             <td class="not-border" style="width:25%">
                 <span># of People Sample (# de muestras entregadas a personas)</span>
             </td>
             <td class="all-border-rigth" style="width:25%">
-                
+                <span>${data.sample_count}</span>
             </td>
         </tr>
     </table>
@@ -725,13 +731,13 @@ function generateHtml (data) {
                 <span>Hours of increased delivery or moments of people in the store: ( horas de mayor entrega o movimientos de personas en la tienda)</span>
             </td>
             <td class="all-border" style="width:10%">
-                
+                <span>${hour_samples_arr[0]}</span>
             </td>
             <td class="all-border not-border-left not-border-rigth" style="width:10%">
-               
+                <span>${hour_samples_arr[1]}</span>
             </td>
             <td class="all-border-rigth" style="width:10%">
-                
+                <span>${hour_samples_arr[2]}</span>
             </td>
         </tr>
     </table>
@@ -748,13 +754,13 @@ function generateHtml (data) {
                 <span>Receptivity (receptividad):	</span>
             </td>
             <td class="" style="width:25%">
-                
+                <span>${data.receptivity}</span>
             </td>
             <td class=" " style="width:25%">
                <span>Demo Location: (localizado)</span>
             </td>
             <td class="" style="width:25%">
-                
+                <span>${data.demo_location[0] ? data.demo_location[0].address : '-'}</span>
             </td>
         </tr>
 
@@ -770,13 +776,13 @@ function generateHtml (data) {
                 <span>Store Traffic (trafico en la tienda):</span>
             </td>
             <td class="" style="width:25%">
-                
+                <span>${data.store_traffic}</span>
             </td>
             <td class=" " style="width:25%">
                <span>Weather (tiempo):</span>
             </td>
             <td class="" style="width:25%">
-                
+                <span>${data.weather}</span>
             </td>
         </tr>
 
@@ -792,13 +798,13 @@ function generateHtml (data) {
                 <span>Store Support (soporte de la tienda):</span>
             </td>
             <td class="" style="width:25%">
-                
+                <span>${data.store_support}</span>
             </td>
             <td class=" " style="width:25%">
                <span>Display Appearance: (apariencia del exhibidor)	</span>
             </td>
             <td class="" style="width:25%">
-                
+                <span>${data.display_appearance}</span>
             </td>
         </tr>
     </table>
@@ -813,9 +819,8 @@ function generateHtml (data) {
                 <span>Did of Consumers Know the Brans? (los consumidores conocían la marca):</span>
             </td>
             <td >
-                
+                <span>Si ${data.cantidad_yes} (${data.porcentaje_yes}%) ,No ${data.cantidad_no} (${data.porcentaje_no}%)</span>
             </td>
-        
         </tr>
 
         <tr >
@@ -828,7 +833,7 @@ function generateHtml (data) {
                 <span>They Liked the taste of consumers? (les gusto el sabor a los consumidores):</span>
             </td>
             <td >
-                
+                <span>Si ${data.cantidad_gusto_si} (${data.porcentaje_gusto_si}%), No ${data.cantidad_gusto_no} (${data.porcentaje_gusto_no}%)</span>
             </td>
         
         </tr>
@@ -843,7 +848,7 @@ function generateHtml (data) {
                 <span>Consumers Country Origin: (país de origen del consumidor)</span>
             </td>
             <td >
-                
+                <span>American ${data.cantidad_american} (${data.porcentaje_american}%), Hispanic ${data.cantidad_hispanic} (${data.porcentaje_hispanic}%), Afro ${data.cantidad_african_american} (${data.porcentaje_african_american}%), Otros ${data.cantidad_other} (${data.porcentaje_other}%)</span>
             </td>
         
         </tr>
@@ -858,7 +863,7 @@ function generateHtml (data) {
                 <span>Consumers (consumidor):	</span>
             </td>
             <td >
-                
+                <span>Childrens ${data.cantidad_childrens} (${data.porcentaje_childrens}%), Youngs ${data.cantidad_young} (${data.porcentaje_young}%), Adults ${data.cantidad_adult} (${data.porcentaje_adult}%), Elderly ${data.cantidad_elderly} (${data.porcentaje_elderly}%)</span>
             </td>
         </tr>
     </table>
