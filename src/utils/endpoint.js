@@ -91,8 +91,8 @@ const endpoint = {
 
         return axios.get(url);
     },
-    getLocationSamples(){
-        let url = `${this.path}/wp-json/wp/v2/location?_fields=id,title,lat,long`;
+    getLocationSamples(search){
+        let url = `${this.path}/wp-json/wp/v2/location?_fields=id,title,lat,long&search=${search}`;
 
         return axios.get(url);
     },

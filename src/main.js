@@ -8,6 +8,9 @@ import "./assets/css/app.css";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import endpoint from "./utils/endpoint";
 import VCalendar from 'v-calendar';
+import vSelect from 'vue-select'
+
+
 
 import axios from 'axios';
 window.axios = axios;
@@ -22,5 +25,6 @@ globalComponents(app);
 utils(app);
 
 app.component('VueDatePicker', VueDatePicker);
+app.component('v-select', vSelect)
 
 app.mount("#app");

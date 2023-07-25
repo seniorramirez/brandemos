@@ -99,6 +99,7 @@
 @import "leaflet-geosearch/dist/geosearch.css";
 @import '@vuepic/vue-datepicker/dist/main.css';
 @import 'v-calendar/style.css';
+@import 'vue-select/dist/vue-select.css';
 /*
  |--------------------------------------------------------------------------
  | Components

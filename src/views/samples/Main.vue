@@ -98,14 +98,23 @@
                     </div>
                     <div class="col-span-12 lg:col-span-6">
                         <label for="user_email" class="form-label">Location *</label>
-                        <select 
+                        <!--select 
 							id="product_brand" 
 							class="form-control w-full" 
                             v-model="form_sample.demo_location" 
 							:class="{ 'invalid': form_sample_invalidate.demo_location }" 
 						>
 							<option v-for="location in locations_lists" :key="location.id" :value="location.id">{{location.location_title}}</option>
-						</select>
+						</select-->
+                        <v-select 
+
+                            v-model="form_sample.demo_location" 
+                            :reduce="(location) => location.id"
+                            :options="locations_lists" 
+                            label="location_title" 
+                            class="form-control w-full" 
+                            @search="getLocations"
+                            ></v-select>
                         <span class="text-xs mt-2 text-danger" v-show="form_sample_invalidate.demo_location">Field is required</span>
                     </div>
                     <div class="col-span-12 lg:col-span-6">
@@ -154,7 +163,7 @@ import axios from 'axios';
 import endpoint from "../../utils/endpoint";
 import dayjs from "dayjs";
 import html2pdf from 'html2pdf.js';
-
+import _ from "lodash";
 
 /**
  * CONSTANS
@@ -422,7 +431,7 @@ async function getSamples() {
 
 }
 
-async function getLocations() {
+/*async function getLocations() {
 
     try {
         const response = await endpoint.getLocationSamples(search.value,pagination.page,pagination.limit);
@@ -443,7 +452,34 @@ async function getLocations() {
         warningNotification.value.showToast('Por favor conectarse con el administrador','¡Ocurrio un error!');
     }
 
-}
+}*/
+
+const getLocations  =  _.debounce(function(search,loading){
+
+			if(!search && loading){
+				return;
+			}
+			if(loading){
+				loading(true);
+			}
+
+			endpoint.getLocationSamples(search).then(res => {
+                loading(false);
+                if (res.status === 200) {
+                
+                    locations_lists.value = res.data.map(elm => {
+                        return {
+                            id: elm.id,
+                            location_title: elm.title.rendered
+                        }
+                    });
+
+                } else {
+                    console.error('Error en la solicitud');
+                }
+            });
+            
+		},500);
 
 async function getUsers() {
 
@@ -1039,7 +1075,7 @@ provide("bind[warningNotification]", (el) => {
 //Mounted
 onMounted(() => {
     getSamples();
-    getLocations();
+    //getLocations();
     getUsers();
 });
 
