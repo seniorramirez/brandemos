@@ -57,6 +57,16 @@ const fakers = {
     }
     return _.sampleSize(photos, 10);
   },
+  fakeLogo() {
+    const photos = [];
+    for (let i = 0; i < 1; i++) {
+      photos[photos.length] =
+        imageAssets[
+          "/src/assets/images/logohedvid.png"
+        ].default;
+    }
+    return _.sampleSize(photos, 10);
+  },
   fakeImages() {
     const images = [];
     for (let i = 0; i < 15; i++) {
