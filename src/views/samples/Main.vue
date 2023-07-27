@@ -963,13 +963,7 @@ function generateHtml (data) {
             <td style="width:100%" class="border-top">
                 <span>	Manager Name / Signature (nombre del gerente / firma):</span>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <img src="${data.manager_approve.guid}" />
             </td>
         </tr>
     </table>
