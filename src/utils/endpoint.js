@@ -159,6 +159,13 @@ const endpoint = {
     },
     deleteSample(id){
         return axios.delete(`${this.path}/wp-json/wp/v2/sample/${id}?reassign=1&force=true`);
+    },
+    pdfSample(id){
+
+        let url = `${this.path}/wp-json/wp/v2/sample/${id}`;
+
+        return axios.get(url);
+
     }
 }
 
