@@ -320,7 +320,7 @@ async function getBrands() {
                 }
             });
 
-            pagination.total = response.data.length;
+            pagination.total = parseInt(response.data[0].brand_count);
             searching.value = false;
         } else {
             console.error('Error en la solicitud');

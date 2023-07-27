@@ -405,7 +405,7 @@ async function getSamples() {
 
             table_data.value = response.data;
 
-            pagination.total = response.data.length;
+            pagination.total = parseInt(response.data[0].sample_count);
             searching.value = false;
         } else {
             console.error('Error en la solicitud');
@@ -1010,7 +1010,7 @@ function generatePdf (data){
     // Opciones de configuración para html2pdf
     const options = {
     margin: [0.2, 0.2, 0.2, 0.2],
-    filename: `CV-${name}.pdf`,
+    filename: `Sample-${data.id}.pdf`,
     image: { type: 'jpeg', quality: 1 },
     html2canvas: {
         dpi: 192,

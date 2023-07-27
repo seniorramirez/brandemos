@@ -164,7 +164,7 @@ const deleting = ref(false);
 
 const pagination = reactive({
     total: 0,
-    limit: 10,
+    limit: 15,
     page: 1,
 });
 
@@ -419,7 +419,7 @@ async function getLocations() {
                 }
             });
 
-            pagination.total = response.data[0].location_count;
+            pagination.total = parseInt(response.data[0].location_count);
             searching.value = false;
         } else {
             console.error('Error en la solicitud');
