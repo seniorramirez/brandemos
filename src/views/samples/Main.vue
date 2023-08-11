@@ -962,14 +962,8 @@ function generateHtml (data) {
         <tr>
             <td style="width:100%" class="border-top">
                 <span>	Manager Name / Signature (nombre del gerente / firma):</span>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <img src="https://brandemos.jgdigitalstudio.com/wp-content/uploads/2023/05/e77e9a295eadaacd7c9ad465f853718a_signature_2.jpeg" />
+                <span>firma</span>
             </td>
         </tr>
     </table>
@@ -978,13 +972,6 @@ function generateHtml (data) {
         <tr>
             <td style="width:100%" class="border-top">
                 <span>Comments About Demo (comentarios sobre el demo):</span>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
                 <br/>
             </td>
         </tr>
@@ -1009,17 +996,17 @@ function generatePdf (data){
 
     // Opciones de configuración para html2pdf
     const options = {
-    margin: [0.2, 0.2, 0.2, 0.2],
-    filename: `Sample-${data.id}.pdf`,
-    image: { type: 'jpeg', quality: 1 },
-    html2canvas: {
-        dpi: 192,
-        scale:4,
-        letterRendering: true,
-        useCORS: true
-    },
-    pagebreak: { avoid: ['tr', 'td'] },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        margin: [0.2, 0.2, 0.2, 0.2],
+        filename: `Sample-${data.id}.pdf`,
+        image: { type: 'jpeg'},
+        html2canvas: {
+            dpi: 192,
+            scale:4,
+            taintTest: true,
+            useCORS: true
+        },
+        pagebreak: { avoid: ['tr', 'td'] },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
     // Generar y descargar el PDF
