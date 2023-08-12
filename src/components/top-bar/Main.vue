@@ -92,7 +92,7 @@ const getUserData = () => {
 const resetToken = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      window.location.href = "/demonstrations/dashboard/login";
+      window.location.href = "/demonstrations/login";
     };
 
 // Llamar a la función al cargar el componente

@@ -1,7 +1,7 @@
 
 const endpoint = {
     token: null,
-    path: 'localhost',
+    path: 'https://brandemos.jgdigitalstudio.com',
     setPath(host){
 
         switch(host){
@@ -12,8 +12,8 @@ const endpoint = {
             case 'brandemos.jgdigitalstudio.com':
                 this.path = 'https://brandemos.jgdigitalstudio.com';
             break;
-            case 'brandemos.com/demonstrations/dashboard/':
-                this.path = 'https://brandemos.com/demonstrations/';
+            case 'brandemos.com':
+                this.path = 'https://brandemos.jgdigitalstudio.com';
             break;
         }
     },

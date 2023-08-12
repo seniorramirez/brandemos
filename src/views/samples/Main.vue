@@ -50,7 +50,7 @@
                         <a href="" class="font-medium whitespace-nowrap">{{ sample.demo_date }}</a>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ sample.demo_location[0].post_title }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ sample.demo_location ? sample.demo_location[0].post_title : ''}}</a>
                     </td>
                     <td class="w-40 text-center">
                         <a href="" class="font-medium whitespace-nowrap">{{ sample.total_units_sold }}</a>
@@ -152,7 +152,6 @@
 
     <SuccessNotification refKey="successNotification"/>
     <WarningNotification refKey="warningNotification" />
-
 </template>
 
 <script setup>
@@ -489,7 +488,7 @@ async function getUsers() {
     }
 }
 
-function generateHtml (data) {
+function generateHtml (data,firma_base_64) {
 
     let table_product = "";
 
@@ -962,8 +961,7 @@ function generateHtml (data) {
         <tr>
             <td style="width:100%" class="border-top">
                 <span>	Manager Name / Signature (nombre del gerente / firma):</span>
-                <img src="https://brandemos.jgdigitalstudio.com/wp-content/uploads/2023/05/e77e9a295eadaacd7c9ad465f853718a_signature_2.jpeg" />
-                <span>firma</span>
+                <img src="${firma_base_64}" crossorigin="anonymous"/>
             </td>
         </tr>
     </table>
@@ -985,25 +983,21 @@ function generateHtml (data) {
       `;
 }
 
-function generatePdf (data){
+async function generatePdf (data){
 	
-    //let data = {"id":204,"date":"2023-06-21T20:49:37","date_gmt":"2023-06-22T00:49:37","guid":{"rendered":"https:\/\/brandemos.com\/demonstrations\/sample\/27\/"},"modified":"2023-07-11T22:20:55","modified_gmt":"2023-07-12T02:20:55","slug":"27","status":"publish","type":"sample","link":"https:\/\/brandemos.com\/demonstrations\/sample\/27\/","title":{"rendered":"27"},"author":1,"featured_media":0,"template":"","demostrator":[{"phone":"","demostratorname":"","demostratorlastname":"","ID":"14","user_login":"s.montoya","user_nicename":"s-montoya","display_name":"Santiago Montoya","user_pass":null,"user_email":"santiago@four19agency.com","user_url":"","user_registered":"2023-06-06 23:44:23","id":14}],"demo_date":"2023-06-27","demo_hours":"00:00:00","number_of_samples_given":[],"number_of_people_sample":[],"receptivity":"Good","demo_location":[{"address":"Sam's Club, 8425, Northwest 13th Terrace, Doral, Condado de Miami-Dade, Florida, 33126, Estados Unidos de Am\u00e9rica","city":"Miami","zip_code":"33178","logo":false,"lat":"25.78685555","long":"-80.33312413247","ID":165,"post_title":"Sams Doral","post_content":"","post_excerpt":"","post_author":"1","post_date":"2023-05-19 19:21:24","post_date_gmt":"2023-05-19 23:21:24","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"desdejson110","to_ping":"","pinged":"","post_modified":"2023-06-01 15:48:19","post_modified_gmt":"2023-06-01 19:48:19","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.jgdigitalstudio.com\/location\/desdejson110\/","menu_order":0,"post_type":"location","post_mime_type":"","comment_count":"0","comments":false,"id":165}],"store_traffic":"Medium","weather":"Sunny","store_support":"Good","display_appearance":"Good","manager_approve":{"ID":"143","post_author":"1","post_date":"2023-05-18 01:54:49","post_date_gmt":"2023-05-18 01:54:49","post_content":"","post_title":"waveBG6","post_excerpt":"","post_status":"inherit","comment_status":"open","ping_status":"closed","post_password":"","post_name":"wavebg6","to_ping":"","pinged":"","post_modified":"2023-07-11 22:20:55","post_modified_gmt":"2023-07-12 02:20:55","post_content_filtered":"","post_parent":"204","guid":"https:\/\/brandemos.jgdigitalstudio.com\/wp-content\/uploads\/2023\/05\/waveBG6.png","menu_order":"0","post_type":"attachment","post_mime_type":"image\/png","comment_count":"0","pod_item_id":"143"},"comments_about_demo":"dfyhrtf","acf":{"consumer":[{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AMERICAN","consumers":"CHILDRENS","consumers_comments_":"456","demostrator_comments":"456"},{"did_of_consumers_know_the_brans_":"NO","they_liked_the_taste_of_consumers":"NO","consumers_country_origin":"HISPANIC","consumers":"ADULT","consumers_comments_":"456","demostrator_comments":"456478"},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AFRICAN-AMERICAN","consumers":"ADULT","consumers_comments_":"","demostrator_comments":""},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AFRICAN-AMERICAN","consumers":"ELDERLY","consumers_comments_":"7486","demostrator_comments":"786"}],"products":[{"product":[{"ID":211,"post_author":"14","post_date":"2023-06-30 10:16:34","post_date_gmt":"2023-06-30 14:16:34","post_content":"","post_title":"Cafe Real  16 OZ","post_excerpt":"","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"cafe-real-16-oz","to_ping":"","pinged":"","post_modified":"2023-06-30 10:16:34","post_modified_gmt":"2023-06-30 14:16:34","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.com\/demonstrations\/product\/cafe-real-16-oz\/","menu_order":0,"post_type":"product","post_mime_type":"","comment_count":"0","filter":"raw"}],"star_inventory":"4","ending_inventory":"3","unitis_sold":"1","price":"5","special_price":"3"},{"product":[{"ID":212,"post_author":"14","post_date":"2023-06-30 10:16:56","post_date_gmt":"2023-06-30 14:16:56","post_content":"","post_title":"Cafe Real  32 OZ","post_excerpt":"","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"cafe-real-32-oz","to_ping":"","pinged":"","post_modified":"2023-06-30 10:16:56","post_modified_gmt":"2023-06-30 14:16:56","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.com\/demonstrations\/product\/cafe-real-32-oz\/","menu_order":0,"post_type":"product","post_mime_type":"","comment_count":"0","filter":"raw"}],"star_inventory":"5","ending_inventory":"2","unitis_sold":"3","price":"5","special_price":"2"}]},"total_start_inventory":9,"total_end_inventory":5,"total_units_sold":4,"cantidad_clientes":4,"cantidad_yes":3,"cantidad_no":1,"porcentaje_yes":75,"porcentaje_no":25,"cantidad_gusto_si":3,"cantidad_gusto_no":1,"porcentaje_gusto_si":75,"porcentaje_gusto_no":25,"cantidad_hispanic":1,"cantidad_american":1,"cantidad_african_american":2,"cantidad_other":0,"porcentaje_hispanic":25,"porcentaje_american":25,"porcentaje_african_american":50,"porcentaje_other":0,"cantidad_childrens":1,"cantidad_young":0,"cantidad_adult":2,"cantidad_elderly":1,"porcentaje_childrens":25,"porcentaje_young":0,"porcentaje_adult":50,"porcentaje_elderly":25,"sample_count":"27","_links":{"self":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/sample\/204"}],"collection":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/sample"}],"about":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/types\/sample"}],"author":[{"embeddable":true,"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/users\/1"}],"wp:attachment":[{"href":"https:\/\/brandemos.com\/demonstrations\/wp-json\/wp\/v2\/media?parent=204"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}};
+    let firma_base_64 = await toDataUrl(data.manager_approve.guid);
 
-    //let data = {"id":230,"date":"2023-07-24T19:22:38","date_gmt":"2023-07-24T23:22:38","guid":{"rendered":"https:\/\/brandemos.jgdigitalstudio.com\/?post_type=sample&#038;p=230"},"modified":"2023-07-24T20:58:05","modified_gmt":"2023-07-25T00:58:05","slug":"25","status":"publish","type":"sample","link":"https:\/\/brandemos.jgdigitalstudio.com\/sample\/25\/","title":{"rendered":"25"},"author":1,"featured_media":0,"template":"","demostrator":[{"phone":"","demostratorname":"","demostratorlastname":"","ID":"3","user_login":"APIuser","user_nicename":"apiuser","display_name":"APIuser","user_pass":null,"user_email":"apiuser@demo.com","user_url":"","user_registered":"2023-05-12 16:14:06","id":3}],"demo_date":"2023-07-25","demo_hours":"20:22:14","number_of_samples_given":"4","number_of_people_sample":"4","receptivity":"Good","demo_location":[{"address":"Florida, Estados Unidos de Am\u00e9rica","city":"Doral","zip_code":"33178","logo":"https:\/\/brandemos.jgdigitalstudio.com\/wp-content\/uploads\/2018\/08\/wordpress.jpg","lat":"27.7567667","long":"-81.4639835","ID":55,"post_title":"Demo Location","post_content":"","post_excerpt":"","post_author":"1","post_date":"2023-05-12 17:20:58","post_date_gmt":"2023-05-12 17:20:58","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"demo-location","to_ping":"","pinged":"","post_modified":"2023-05-22 12:18:04","post_modified_gmt":"2023-05-22 16:18:04","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.jgdigitalstudio.com\/?post_type=location&#038;p=55","menu_order":0,"post_type":"location","post_mime_type":"","comment_count":"0","comments":false,"id":55}],"demo_position":"Front","store_traffic":"Low","weather":"Rain","store_support":"Good","display_appearance":"Good","manager_approve":{"ID":"209","post_author":"1","post_date":"2023-05-30 15:24:21","post_date_gmt":"2023-05-30 19:24:21","post_content":"","post_title":"e77e9a295eadaacd7c9ad465f853718a_signature_2","post_excerpt":"","post_status":"inherit","comment_status":"open","ping_status":"closed","post_password":"","post_name":"e77e9a295eadaacd7c9ad465f853718a_signature_2","to_ping":"","pinged":"","post_modified":"2023-07-24 20:58:05","post_modified_gmt":"2023-07-25 00:58:05","post_content_filtered":"","post_parent":"230","guid":"https:\/\/brandemos.jgdigitalstudio.com\/wp-content\/uploads\/2023\/05\/e77e9a295eadaacd7c9ad465f853718a_signature_2.jpeg","menu_order":"0","post_type":"attachment","post_mime_type":"image\/jpeg","comment_count":"0","pod_item_id":"209"},"comments_about_demo":"asda","best_hour":"19:55:48","end_consumer_comments":"asdas","end_demostrator_comments":"dasdasd","acf":{"consumer":[{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AMERICAN","consumers":"CHILDRENS","consumers_comments_":"as","demostrator_comments":"asd"},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AMERICAN","consumers":"CHILDRENS","consumers_comments_":"","demostrator_comments":""},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"HISPANIC","consumers":"CHILDRENS","consumers_comments_":"","demostrator_comments":""},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"AFRICAN-AMERICAN","consumers":"ADULT","consumers_comments_":"","demostrator_comments":""},{"did_of_consumers_know_the_brans_":"YES","they_liked_the_taste_of_consumers":"YES","consumers_country_origin":"OTHER","consumers":"ELDERLY","consumers_comments_":"","demostrator_comments":""},{"did_of_consumers_know_the_brans_":"NO","they_liked_the_taste_of_consumers":"NO","consumers_country_origin":"HISPANIC","consumers":"YOUNG","consumers_comments_":"","demostrator_comments":""}],"products":[{"product":[{"ID":158,"post_author":"1","post_date":"2023-05-19 08:50:07","post_date_gmt":"2023-05-19 12:50:07","post_content":"","post_title":"aaaaa","post_excerpt":"","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"aaaaa","to_ping":"","pinged":"","post_modified":"2023-05-19 08:50:07","post_modified_gmt":"2023-05-19 12:50:07","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.jgdigitalstudio.com\/product\/aaaaa\/","menu_order":0,"post_type":"product","post_mime_type":"","comment_count":"0","filter":"raw"}],"star_inventory":"1","ending_inventory":"1","unitis_sold":"0","price":"10","special_price":"9"},{"product":[{"ID":47,"post_author":"1","post_date":"2023-05-12 16:45:38","post_date_gmt":"2023-05-12 16:45:38","post_content":"","post_title":"Producto Demo","post_excerpt":"","post_status":"publish","comment_status":"closed","ping_status":"closed","post_password":"","post_name":"producto-demo","to_ping":"","pinged":"","post_modified":"2023-05-12 16:45:38","post_modified_gmt":"2023-05-12 16:45:38","post_content_filtered":"","post_parent":0,"guid":"https:\/\/brandemos.jgdigitalstudio.com\/?post_type=product&#038;p=47","menu_order":0,"post_type":"product","post_mime_type":"","comment_count":"0","filter":"raw"}],"star_inventory":"3","ending_inventory":"1","unitis_sold":"2","price":"10","special_price":"5"}]},"total_start_inventory":4,"total_end_inventory":2,"total_units_sold":2,"cantidad_clientes":6,"cantidad_yes":5,"cantidad_no":1,"porcentaje_yes":83.333333333333342807236476801335811614990234375,"porcentaje_no":16.66666666666666429819088079966604709625244140625,"cantidad_gusto_si":5,"cantidad_gusto_no":1,"porcentaje_gusto_si":83.333333333333342807236476801335811614990234375,"porcentaje_gusto_no":16.66666666666666429819088079966604709625244140625,"cantidad_hispanic":2,"cantidad_american":2,"cantidad_african_american":1,"cantidad_other":1,"porcentaje_hispanic":33.3333333333333285963817615993320941925048828125,"porcentaje_american":33.3333333333333285963817615993320941925048828125,"porcentaje_african_american":16.66666666666666429819088079966604709625244140625,"porcentaje_other":16.66666666666666429819088079966604709625244140625,"cantidad_childrens":3,"cantidad_young":1,"cantidad_adult":1,"cantidad_elderly":1,"porcentaje_childrens":50,"porcentaje_young":16.66666666666666429819088079966604709625244140625,"porcentaje_adult":16.66666666666666429819088079966604709625244140625,"porcentaje_elderly":16.66666666666666429819088079966604709625244140625,"sample_count":"26","_links":{"self":[{"href":"https:\/\/brandemos.jgdigitalstudio.com\/wp-json\/wp\/v2\/sample\/230"}],"collection":[{"href":"https:\/\/brandemos.jgdigitalstudio.com\/wp-json\/wp\/v2\/sample"}],"about":[{"href":"https:\/\/brandemos.jgdigitalstudio.com\/wp-json\/wp\/v2\/types\/sample"}],"author":[{"embeddable":true,"href":"https:\/\/brandemos.jgdigitalstudio.com\/wp-json\/wp\/v2\/users\/1"}],"wp:attachment":[{"href":"https:\/\/brandemos.jgdigitalstudio.com\/wp-json\/wp\/v2\/media?parent=230"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}};
-
-    const htmlContent = generateHtml(data);
-
+    const htmlContent = generateHtml(data,firma_base_64);
 
     // Opciones de configuración para html2pdf
     const options = {
         margin: [0.2, 0.2, 0.2, 0.2],
         filename: `Sample-${data.id}.pdf`,
-        image: { type: 'jpeg'},
+        image: { type: 'jpeg', quality: 0.20},
         html2canvas: {
             dpi: 192,
             scale:4,
-            taintTest: true,
-            useCORS: true
+            useCors: false,
         },
         pagebreak: { avoid: ['tr', 'td'] },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -1031,6 +1025,18 @@ async function getDataPDF(record){
         warningNotification.value.showToast('Por favor conectarse con el administrador','¡Ocurrio un error!');
     }
 }
+
+const toDataUrl = async function (url, callback) {
+
+    return fetch(url)
+        .then(resp => resp.blob())
+        .then(blob =>  new Promise((resolve, _) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(blob);
+        }));
+    
+};
 
 
 /**

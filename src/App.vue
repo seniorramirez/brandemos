@@ -39,7 +39,7 @@
   function resetToken(){
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "/demonstrations/dashboard/login";
+    window.location.href = "/demonstrations/login";
   }
 
 </script>
