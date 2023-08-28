@@ -142,7 +142,7 @@ function login(){
             user_display_name: res.data.user_display_name
         }));
 
-        window.location.href = "/";
+        window.location.href = "/demonstrations/";
         
     }).catch(res => {
         console.log(res);
