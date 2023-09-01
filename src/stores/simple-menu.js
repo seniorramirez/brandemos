@@ -5,14 +5,39 @@ export const useSimpleMenuStore = defineStore("simpleMenu", {
     menu: [
       {
         icon: "HomeIcon",
-        pageName: "simple-menu-page-1",
-        title: "Page 1",
+        pageName: "dashboard",
+        title: "Dashboard",
       },
       {
-        icon: "HomeIcon",
-        pageName: "simple-menu-page-2",
-        title: "Page 2",
+        icon: "BoxIcon",
+        pageName: "products",
+        title: "Products",
       },
+      {
+        icon: "BoxIcon",
+        pageName: "brands",
+        title: "Brands",
+      },
+      {
+        icon: "MapPinIcon",
+        pageName: "locations",
+        title: "Locations",
+      },
+      {
+        icon: "EyeIcon",
+        pageName: "samples",
+        title: "Samples",
+      },
+      {
+        icon: "UsersIcon",
+        pageName: "users",
+        title: "Users",
+      },
+      {
+        icon: "PieChartIcon",
+        pageName: "reports",
+        title: "Reports",
+      }
     ],
   }),
 });

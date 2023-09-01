@@ -33,6 +33,11 @@ export const useTopMenuStore = defineStore("topMenu", {
         pageName: "users",
         title: "Users",
       },
+      {
+        icon: "PieChartIcon",
+        pageName: "reports",
+        title: "Reports",
+      }
     ],
   }),
 });

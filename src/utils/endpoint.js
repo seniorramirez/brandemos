@@ -48,6 +48,11 @@ const endpoint = {
 
         return axios.get(url);
     },
+    getProductReport(search){
+        let url = `${this.path}/wp-json/wp/v2/product?_fields=id,title,product_barcode_number&search=${search}`;
+
+        return axios.get(url);
+    },
     createProduct(body){
         return axios.post(`${this.path}/wp-json/wp/v2/product`,body);
     },
@@ -82,7 +87,7 @@ const endpoint = {
     //LOCATION
     getLocation(search,page = 1,limit = 10){
 
-        let url = `${this.path}/wp-json/wp/v2/location?_embed&_fields=id,title,address,city,zip_code,_embedded,_links,location_count&page=${page}&per_page=${limit}`;
+        let url = `${this.path}/wp-json/wp/v2/location?_embed&_fields=id,title,address,city,zip_code,_embedded,_links,location_count&page=${page}&per_page=${limit}&order=asc`;
 
 
         if(search){
@@ -92,7 +97,11 @@ const endpoint = {
         return axios.get(url);
     },
     getLocationSamples(search){
-        let url = `${this.path}/wp-json/wp/v2/location?_fields=id,title,lat,long&search=${search}`;
+        let url = `${this.path}/wp-json/wp/v2/location?_fields=id,title,lat,long&per_page=100`;
+
+        if(search){
+            url += `&search=${search}`;
+        }
 
         return axios.get(url);
     },
@@ -166,6 +175,48 @@ const endpoint = {
 
         return axios.get(url);
 
+    },
+
+    //Reports
+    getReportDates(date_initial,date_end,download){
+
+        let url = `${this.path}/wp-json/wp/v2/sample/reports/samples-between-dates?`;  
+
+        if(date_initial && date_end){
+            url += `start_date=${date_initial}&end_date=${date_end}`;
+        }
+
+        if(download){
+            url += `&download=${download}`;
+
+            return url;
+        }
+
+        return axios.get(url);
+    },
+    getReportLocation(location_selected,download){
+
+        let url = `${this.path}/wp-json/wp/v2/sample/reports/samples-by-location?location=${location_selected}`;  
+
+        if(download){
+            url += `&download=${download}`;
+
+            return url;
+        }
+
+        return axios.get(url);
+    },
+    getReportProduct(product_selected,download){
+
+        let url = `${this.path}/wp-json/wp/v2/sample/reports/samples-by-product?product_id=${product_selected}`;  
+
+        if(download){
+            url += `&download=${download}`;
+
+            return url;
+        }
+
+        return axios.get(url);
     }
 }
 

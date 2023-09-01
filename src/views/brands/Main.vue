@@ -33,18 +33,18 @@
         <table class="table table-report -mt-2">
             <thead>
                 <tr>
-                    <th class="whitespace-nowrap">BRAND NAME</th>
+                    <th class="whitespace-nowrap text-center">BRAND NAME</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="product in table_data" :key="product.id" class="intro-x">
                     <td >
-                        <a href="" class="font-medium whitespace-nowrap">{{ product.name}}</a>
+                        <span class="font-medium ">{{ product.name}}</span>
                     </td>
-                    <td>
+                    <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
-                            <a class="flex items-center text-danger" href="javascript:;" @click="showModalDelete(product)">
+                            <a  class="flex items-center text-danger" href="javascript:;" @click="showModalDelete(product)">
                                 <Trash2Icon class="w-4 h-4 mr-1" /> Delete
                             </a>
                         </div>

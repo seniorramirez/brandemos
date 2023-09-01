@@ -157,10 +157,9 @@
             <table class="table table-report sm:mt-2">
               <thead>
                 <tr>
-                  <th class="whitespace-nowrap">ID</th>
-                  <th class="whitespace-nowrap">PRODUCT NAME</th>
+                  <th class="text-center whitespace-nowrap">ID</th>
+                  <th class="text-center whitespace-nowrap">PRODUCT NAME</th>
                   <th class="text-center whitespace-nowrap">TIMES USED</th>
-                  <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
@@ -172,17 +171,10 @@
                     {{ product.id }}
                   </td>
                   <td>
-                    <a href="" class="font-medium whitespace-nowrap">{{ product.title }}</a>
+                    <span href="" class="font-medium ">{{ product.title }}</span>
                   </td>
                   <td class="text-center">{{ product.count }}</td>
-                  <td class="table-report__action w-56">
-                    <div class="flex justify-center items-center">
-                      <a class="flex items-center mr-3" href="">
-                        <CheckSquareIcon class="w-4 h-4 mr-1" />
-                        Edit
-                      </a>
-                    </div>
-                  </td>
+                
                 </tr>
               </tbody>
             </table>
@@ -257,14 +249,23 @@
                     </div>
                     <div class="col-span-12 lg:col-span-6">
                         <label for="user_email" class="form-label">Location *</label>
-                        <select 
+                        <!--select 
 							id="product_brand" 
 							class="form-control w-full" 
                             v-model="form_sample.demo_location" 
 							:class="{ 'invalid': form_sample_invalidate.demo_location }" 
 						>
 							<option v-for="location in locations_lists" :key="location.id" :value="location.id">{{location.location_title}}</option>
-						</select>
+						</select-->
+						<v-select 
+
+                            v-model="form_sample.demo_location" 
+                            :reduce="(location) => location.id"
+                            :options="locations_lists" 
+                            label="location_title" 
+                            class="form-control w-full" 
+                            @search="getLocationsSamples"
+                            ></v-select>
                         <span class="text-xs mt-2 text-danger" v-show="form_sample_invalidate.demo_location">Field is required</span>
                     </div>
                     <div class="col-span-12 lg:col-span-6">
@@ -311,6 +312,7 @@ import SimpleLineChart1 from "@/components/simple-line-chart-1/Main.vue";
 import axios from 'axios';
 import endpoint from "../../utils/endpoint";
 import dayjs from "dayjs";
+import _ from "lodash";
 
 const salesReportFilter = ref();
 const importantNotesRef = ref();
@@ -368,7 +370,7 @@ function selectedDay(event){
 	let now = dayjs();
 	let date_selected = dayjs(event.id);
 
-	if(date_selected < now){
+	if(date_selected < now.subtract(1,'days')){
 		return;
 	}
 
@@ -481,15 +483,17 @@ async function getLocations() {
     try {
         const response = await endpoint.getLocationSamples();
         if (response.status === 200) {
-            
-            locations_lists.value = response.data.map(elm => {
-                return {
-                    id: elm.id,
-                    location_title: elm.title.rendered
-                }
-            });
 
-            locations_maps.value = response.data.map(elm => {
+			let locations_with_lat = response.data.filter(elm => elm.lat);
+
+			locations_lists.value = response.data.map(elm => {
+				return {
+					id: elm.id,
+					location_title: elm.title.rendered
+				}
+			});
+            
+            locations_maps.value = locations_with_lat.map(elm => {
               return {
                 id: elm.id,
                 name: elm.title.rendered,
@@ -561,6 +565,33 @@ async function getSamples() {
         console.error(error);
     }
 }
+
+const getLocationsSamples =  _.debounce(function(search,loading){
+
+	if(!search && loading){
+		return;
+	}
+	if(loading){
+		loading(true);
+	}
+
+	endpoint.getLocationSamples(search).then(res => {
+		loading(false);
+		if (res.status === 200) {
+		
+			locations_lists.value = res.data.map(elm => {
+				return {
+					id: elm.id,
+					location_title: elm.title.rendered
+				}
+			});
+
+		} else {
+			console.error('Error en la solicitud');
+		}
+	});
+	
+},500);
 
 
 const successNotification = ref();

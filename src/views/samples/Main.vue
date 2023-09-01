@@ -33,11 +33,11 @@
         <table class="table table-report -mt-2">
             <thead>
                 <tr>
-                    <th class="whitespace-nowrap">DEMOSTRATOR</th>
-                    <th class="whitespace-nowrap">DATE</th>
-                    <th class="whitespace-nowrap">LOCATION</th>
-                    <th class="whitespace-nowrap">UNITS SOLD</th>
-                    <th class="whitespace-nowrap">SAMPLES</th>
+                    <th class="whitespace-nowrap text-center">DEMOSTRATOR</th>
+                    <th class="whitespace-nowrap text-center">DATE</th>
+                    <th class="whitespace-nowrap text-center">LOCATION</th>
+                    <th class="whitespace-nowrap text-center">UNITS SOLD</th>
+                    <th class="whitespace-nowrap text-center">SAMPLES</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -47,16 +47,16 @@
                         <span>{{ sample.demostrator ? sample.demostrator[0].user_nicename : 'Not found'}}</span>
                     </td>
                     <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ sample.demo_date }}</a>
+                        <span class="font-medium ">{{ sample.demo_date }}</span>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ sample.demo_location ? sample.demo_location[0].post_title : ''}}</a>
+                        <span class="">{{ sample.demo_location ? sample.demo_location[0].post_title : ''}}</span>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ sample.total_units_sold }}</a>
+                        <span class=" ">{{ sample.total_units_sold }}</span>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ sample.cantidad_clientes }}</a>
+                        <span class="">{{ sample.cantidad_clientes }}</span>
                     </td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">

@@ -11,6 +11,7 @@ import Locations from "../views/locations/Main.vue";
 import Samples from "../views/samples/Main.vue";
 import Users from "../views/users/Main.vue";
 import Brands from "../views/brands/Main.vue";
+import Reports from "../views/reports/Main.vue";
 
 const isAuth = localStorage.getItem("token");
 
@@ -48,6 +49,16 @@ const routes = [
         path: "/demonstrations/users",
         name: "users",
         component: Users,
+      },
+      {
+        path: "/demonstrations/users",
+        name: "users",
+        component: Users,
+      },
+      {
+        path: "/demonstrations/reports",
+        name: "reports",
+        component: Reports,
       },
     ],
   },

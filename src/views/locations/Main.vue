@@ -33,8 +33,8 @@
         <table class="table table-report -mt-2">
             <thead>
                 <tr>
-                    <th class="whitespace-nowrap">LOCATION NAME</th>
-                    <th class="whitespace-nowrap">ADDRESS</th>
+                    <th class="whitespace-nowrap text-center">LOCATION NAME</th>
+                    <th class="whitespace-nowrap text-center">ADDRESS</th>
                     <th class="text-center whitespace-nowrap">CITY</th>
                     <th class="text-center whitespace-nowrap">ZIP</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -43,16 +43,16 @@
             <tbody>
                 <tr v-for="product in table_data" :key="product.id" class="intro-x">
                     <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ product.location_title}}</a>
+                        <span  class="font-medium ">{{ product.location_title}}</span>
                     </td>
                     <td class="w-40">
-                        <a href="" class="font-medium">{{ product.address }}</a>
+                        <span  class="">{{ product.address }}</span>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ product.city }}</a>
+                        <span  class=" ">{{ product.city }}</span>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ product.zip_code }}</a>
+                        <span  class=" ">{{ product.zip_code }}</span>
                     </td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">

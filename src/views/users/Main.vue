@@ -42,13 +42,13 @@
             <tbody>
                 <tr v-for="user in table_data" :key="user.id" class="intro-x">
                     <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ user.user_name}}</a>
+                        <span href="" class="font-medium ">{{ user.user_name}}</span>
                     </td>
                     <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ user.name }} {{ user.last_name }}</a>
+                        <span href="" class="font-medium ">{{ user.name }} {{ user.last_name }}</span>
                     </td>
                     <td class="w-40 text-center">
-                        <a href="" class="font-medium whitespace-nowrap">{{ user.phone }}</a>
+                        <span href="" class="">{{ user.phone }}</span>
                     </td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
